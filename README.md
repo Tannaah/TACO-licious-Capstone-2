@@ -50,3 +50,6 @@ Clone the repository from GitHub.
 Open the project in IntelliJ.
 
 Run Main.java to start the application.
+
+# Taco Class Framework/Outline
+<img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
