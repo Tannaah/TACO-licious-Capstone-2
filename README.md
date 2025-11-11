@@ -1,5 +1,7 @@
-# TACO-licious 
-Custom Taco Ordering System Overview
+# Let's Taco 'Bout It
+This is a console-based restaurant management system built in Java!
+
+Custom Taco Ordering System Overview:
 
 TACO-licious is a point-of-sale console application designed to automate the taco ordering process for a custom taco shop. Customers can build tacos or burritos with fully customizable shells, toppings, and sides, then check out and receive a digital receipt.
 
