@@ -66,11 +66,20 @@ public class Taco {
         this.deepFried = deepFried;
     }
 
+
+    // Determines the base price based on the taco size!
+    public double calculateBasePrice() {
+        return switch (size.toLowerCase()) {
+            case "single taco" -> 3.50;
+            case "3-taco plate" -> 9.00;
+            case "burrito" -> 8.50;
+            default -> 0;
+        };
+    }
+
     /*
-     * Phase 1: Pricing Coding Plan
+     * Pricing Coding Plan
      * ---------------------------
-     * - Add method: calculateBasePrice()
-     *   Determines price based on taco size. (Single, 3-Taco Plate, Burrito)
      * - Add method: calculateToppingsPrice()
      *   Loops through meats & cheeses to add extra costs.
      * - Add method: calculateTotalPrice()
