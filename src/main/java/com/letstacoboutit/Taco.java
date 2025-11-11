@@ -66,6 +66,18 @@ public class Taco {
         this.deepFried = deepFried;
     }
 
+    /*
+     * Phase 1: Pricing Coding Plan
+     * ---------------------------
+     * - Add method: calculateBasePrice()
+     *   Determines price based on taco size. (Single, 3-Taco Plate, Burrito)
+     * - Add method: calculateToppingsPrice()
+     *   Loops through meats & cheeses to add extra costs.
+     * - Add method: calculateTotalPrice()
+     *   Adds base price + toppings + extras (like deep-fry cost)
+     */
+
+
     // -- Helper Methods --
     public void addMeat(String meat) {
         meats.add(meat);
