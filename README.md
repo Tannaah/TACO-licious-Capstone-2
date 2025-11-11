@@ -53,3 +53,6 @@ Run Main.java to start the application.
 
 # Taco Class Framework/Outline
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
+
+## Taco Class Pricing Coding Plan
+<img width="2210" height="998" alt="Screen Shot 2025-11-11 at 18 34 01 PM" src="https://github.com/user-attachments/assets/e7acd481-8d60-4f0f-bc38-95d36e4eba50" />
