@@ -1,34 +1,96 @@
 package com.letstacoboutit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Taco {
 
-    /* Taco Class Outline:
-     *
-     * Purpose:
-     *   Represents a single customizable taco in the Let's Taco 'Bout It ordering system.
-     *   Each taco can vary in size, shell type, and toppings.
-     *
-     * Fields (instance variables):
-     *   - String size: the size of the taco ("Single", "3-Taco Plate", "Burrito")
-     *   - String shellType: type of tortilla ("corn", "flour", "hard shell", "bowl")
-     *   - List<String> regularToppings: holds all standard toppings
-     *   - List<String> premiumToppings: holds premium toppings like meats and cheeses
-     *   - boolean deepFried: determines if the taco is deep fried
-     *   - double price: total price of the taco
-     *
-     * Constructor:
-     *   - Takes in size and shellType
-     *   - Initializes lists and sets default values
-     *
-     * Methods:
-     *   - addRegularTopping(String topping): adds a topping from the regular list
-     *   - addPremiumTopping(String topping): adds a topping from premium list
-     *   - setDeepFried(boolean deepFried): sets if the taco is fried
-     *   - calculatePrice(): calculates total based on size, toppings, and extras
-     *   - toString(): returns a summary of the taco’s configuration for display
-     *
-     * Notes:
-     *   - This class will be used by the Order class to build the customer’s order.
-     *   - Future idea: possibly add a method for “duplicate taco” to re-order quickly.
+    // -- Fields --
+    private String size;            // Single, 3-Taco Plate, or Burrito.
+    private String shellType;       // corn, flour, hard shell, or bowl.
+    private List<String> meats;     // list to hold chosen meats.
+    private List<String> cheeses;   // list to hold chosen cheeses.
+    private List<String> toppings;  // list to hold other toppings. (lettuce, onion, etc.)
+    private List<String> sauces;    // list for sauces.
+    private boolean deepFried;      // true if taco is deep-fried.
 
+    // -- Constructor --
+    public Taco(String size, String shellType) {
+        this.size = size;
+        this.shellType = shellType;
+        this.meats = new ArrayList<>();
+        this.cheeses = new ArrayList<>();
+        this.toppings = new ArrayList<>();
+        this.sauces = new ArrayList<>();
+        this.deepFried = false; // default to not fried
+    }
+
+    // -- Getters and Setters --
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getShellType() {
+        return shellType;
+    }
+
+    public void setShellType(String shellType) {
+        this.shellType = shellType;
+    }
+
+    public List<String> getMeats() {
+        return meats;
+    }
+
+    public List<String> getCheeses() {
+        return cheeses;
+    }
+
+    public List<String> getToppings() {
+        return toppings;
+    }
+
+    public List<String> getSauces() {
+        return sauces;
+    }
+
+    public boolean isDeepFried() {
+        return deepFried;
+    }
+
+    public void setDeepFried(boolean deepFried) {
+        this.deepFried = deepFried;
+    }
+
+    // -- Helper Methods --
+    public void addMeat(String meat) {
+        meats.add(meat);
+    }
+
+    public void addCheese(String cheese) {
+        cheeses.add(cheese);
+    }
+
+    public void addTopping(String topping) {
+        toppings.add(topping);
+    }
+
+    public void addSauce(String sauce) {
+        sauces.add(sauce);
+    }
+
+
+    @Override
+    public String toString() {
+        return size + " Taco (" + shellType + ")" +
+                (deepFried ? " [Deep Fried]" : "") +
+                "\nMeats: " + meats +
+                "\nCheeses: " + cheeses +
+                "\nToppings: " + toppings +
+                "\nSauces: " + sauces;
+    }
 }
