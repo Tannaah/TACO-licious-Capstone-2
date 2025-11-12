@@ -89,7 +89,9 @@ public class Order {
     }
 
     public void printOrderSummary() {
+        System.out.println(getOrderSummary());
     }
+
 
     @Override
     public String toString() {
