@@ -4,23 +4,33 @@ import java.util.Scanner;
 
 public class ConsoleHelper {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    // -- Constructor --
+    public ConsoleHelper() {
+        this.scanner = new Scanner(System.in);
+    }
 
     // Prints a header with divider lines for readability.
-    public static void printHeader(String text) {
+    public void printHeader(String text) {
         System.out.println("\n==============================");
         System.out.println(text.toUpperCase());
         System.out.println("==============================");
     }
 
+    // Prints a simple message.
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
     // Prompts the user for a String input.
-    public static String promptString(String message) {
+    public String readString(String message) {
         System.out.print(message + ": ");
         return scanner.nextLine().trim();
     }
 
     // Prompts for an integer, ensuring valid input.
-    public static int promptInt(String message) {
+    public int readInt(String message) {
         while (true) {
             System.out.print(message + ": ");
             try {
@@ -32,20 +42,20 @@ public class ConsoleHelper {
     }
 
     // Prompts for a yes or no response.
-    public static boolean promptYesNo(String message) {
+    public boolean readYesNo(String message) {
         while (true) {
-            System.out.print(message + " (y/n): ");
+            System.out.print(message + "(Yes or No): ");
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.equals("y") || input.equals("yes"))
                 return true;
             if (input.equals("n") || input.equals("no"))
                 return false;
-            System.out.println("Please enter 'y' or 'n'");
+            System.out.println("Please enter 'Yes' or 'No'");
         }
     }
 
     // Simple pause to allow user to read screen before proceeding.
-    public static void pause() {
+    public void pause() {
         System.out.println("\nPress Enter to continue.");
         scanner.nextLine();
     }
