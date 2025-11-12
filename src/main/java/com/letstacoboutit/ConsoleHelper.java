@@ -1,34 +1,50 @@
 package com.letstacoboutit;
 
+import java.util.Scanner;
+
 public class ConsoleHelper {
 
-    /*
-     * ConsoleHelper
-     * ----------------------------
-     * Purpose:
-     *   - A small utility class to handle all console input and output.
-     *   - Keeps user prompts and input validation cleanly separated from core logic.
-     *
-     * Planned Methods:
-     *   1. printHeader(String text)
-     *      - Prints section headers with a divider line for readability.
-     *
-     *   2. promptString(String message)
-     *      - Asks the user for a String input and returns it.
-     *
-     *   3. promptInt(String message)
-     *      - Safely gets an integer input, reprompts if input is invalid.
-     *
-     *   4. promptYesNo(String message)
-     *      - Gets a yes/no answer and returns a boolean.
-     *
-     *   5. pause()
-     *      - Simple “Press Enter to continue...” pause to give users control between screens.
-     *
-     * Notes:
-     *   - Keep methods static since this is a utility class.
-     *   - We’ll import Scanner and reuse a single instance.
-     *   - Designed for reusability across UserInterface and testing.
-     */
+    private static final Scanner scanner = new Scanner(System.in);
 
+    // Prints a header with divider lines for readability.
+    public static void printHeader(String text) {
+        System.out.println("\n==============================");
+        System.out.println(text.toUpperCase());
+        System.out.println("==============================");
+    }
+
+    // Prompts the user for a String input.
+    public static String promptString(String message) {
+        System.out.print(message + ": ");
+        return scanner.nextLine().trim();
+    }
+
+    // Prompts for an integer, ensuring valid input.
+    public static int promptInt(String message) {
+        while (true) {
+            System.out.print(message + ": ");
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number, try again.");
+            }
+        }
+    }
+
+    // Prompts for a yes or no response.
+    public static boolean promptYesNo(String message) {
+        while (true) {
+            System.out.print(message + " (y/n): ");
+            String input = scanner.nextLine().trim().toLowerCase();
+            if (input.equals("y") || input.equals("yes")) return true;
+            if (input.equals("n") || input.equals("no")) return false;
+            System.out.println("Please enter 'y' or 'n'.");
+        }
+    }
+
+    // Simple pause to allow user to read screen before proceeding.
+    public static void pause() {
+        System.out.println("\nPress Enter to continue...");
+        scanner.nextLine();
+    }
 }
