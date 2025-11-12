@@ -61,15 +61,36 @@ public class Order {
         return total;
     }
 
-    // Returns the total number of tacos in this order
+    // Returns the total number of tacos in this order.
     public int getTacoCount() {
         return tacos.size();
     }
 
-    // todo: add getOrderSummary
-    // getOrderSummary(): Returns a formatted summary of the entire order.
+    // Returns a formatted summary string of the full order.
+    public String getOrderSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append("\n--- Order Summary ---\n");
+        summary.append("Order #").append(orderId)
+                .append(" for ").append(customerName)
+                .append("\nCompleted: ").append(completed ? "Yes" : "No")
+                .append("\n----------------------\n");
 
+        for (int i = 0; i < tacos.size(); i++) {
+            summary.append("Taco #").append(i + 1).append(":\n");
+            summary.append(tacos.get(i).toString()).append("\n");
+            summary.append(String.format("Price: $%.2f%n", tacos.get(i).calculateTotalPrice()));
+            summary.append("----------------------\n");
+        }
+
+        summary.append(String.format("TOTAL: $%.2f%n", calculateTotal()));
+        summary.append("----------------------\n");
+        return summary.toString();
     }
 
-    // todo: Add toString Override
-    // Provides a readable output of the order details.
+    @Override
+    public String toString() {
+        return "Order #" + orderId + " for " + customerName +
+                " (" + getTacoCount() + " tacos, " +
+                (completed ? "Completed" : "In Progress") + ")";
+    }
+}
