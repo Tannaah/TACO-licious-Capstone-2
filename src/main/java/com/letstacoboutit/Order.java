@@ -80,6 +80,7 @@ public class Order {
             summary.append(tacos.get(i).toString()).append("\n");
             summary.append(String.format("Price: $%.2f%n", tacos.get(i).calculateTotalPrice()));
             summary.append("----------------------\n");
+
         }
 
         summary.append(String.format("TOTAL: $%.2f%n", calculateTotal()));
