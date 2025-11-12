@@ -88,6 +88,9 @@ public class Order {
         return summary.toString();
     }
 
+    public void printOrderSummary() {
+    }
+
     @Override
     public String toString() {
         return "Order #" + orderId + " for " + customerName +
