@@ -77,11 +77,36 @@ public class Taco {
         };
     }
 
+    // Calculates additional cost from meats and cheeses
+    public double calculateToppingsPrice() {
+        double total = 0;
+
+        // Each meat adds to the cost
+        for (String meat : meats) {
+            total += switch (size.toLowerCase()) {
+                case "single taco" -> 1.00;
+                case "3-taco plate" -> 2.00;
+                case "burrito" -> 3.00;
+                default -> 0;
+            };
+        }
+
+        // Each cheese adds to the cost
+        for (String cheese : cheeses) {
+            total += switch (size.toLowerCase()) {
+                case "single taco" -> 0.75;
+                case "3-taco plate" -> 1.50;
+                case "burrito" -> 2.25;
+                default -> 0;
+            };
+        }
+        return total;
+    }
+
+
     /*
      * Pricing Coding Plan
      * ---------------------------
-     * - Add method: calculateToppingsPrice()
-     *   Loops through meats & cheeses to add extra costs.
      * - Add method: calculateTotalPrice()
      *   Adds base price + toppings + extras (like deep-fry cost)
      */
