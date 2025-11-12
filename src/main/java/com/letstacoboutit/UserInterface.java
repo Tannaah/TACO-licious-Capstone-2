@@ -2,7 +2,31 @@ package com.letstacoboutit;
 
 public class UserInterface {
 
-    /* UserInterface: The Control Center!
+    private final ConsoleHelper console = new ConsoleHelper();
+    private Order currentOrder;
+
+    // Entry point for the program.
+    public void start() {
+        console.printMessage(" 🌮Welcome to Let's Taco 'Bout It!🌮 ");
+
+        boolean running = true;
+        while (running) {
+            showMainMenu();
+            int choice = console.readInt("Enter your choice");
+
+            switch (choice) {
+                case 1 -> createNewOrder();
+                case 2 -> displayCurrentOrder();
+                case 3 -> running = false;
+                default -> console.printMessage("Invalid option. Please try again.");
+            }
+        }
+
+        exitProgram();
+    }
+}
+
+/* UserInterface: The Control Center!
      * The UserInterface class serves as the main interaction layer.
      * between the user and the Taco Ordering System.
      * It uses ConsoleHelper for input/output and manages the ordering flow.
@@ -20,5 +44,3 @@ public class UserInterface {
      * - displayOrderSummary(): Prints order details and total.
      * - exitProgram(): Closes app gracefully.
      */
-
-}
