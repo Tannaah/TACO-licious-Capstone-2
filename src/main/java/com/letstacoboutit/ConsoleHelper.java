@@ -44,7 +44,7 @@ public class ConsoleHelper {
     // Prompts for a yes or no response.
     public boolean readYesNo(String message) {
         while (true) {
-            System.out.print(message + "(Yes or No): ");
+            System.out.print(message + " (Yes or No): ");
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.equals("y") || input.equals("yes"))
                 return true;
