@@ -104,12 +104,16 @@ public class Taco {
     }
 
 
-    /*
-     * Pricing Coding Plan
-     * ---------------------------
-     * - Add method: calculateTotalPrice()
-     *   Adds base price + toppings + extras (like deep-fry cost)
-     */
+    // Calculates total taco price (base + toppings + deep-fry)
+    public double calculateTotalPrice() {
+        double total = calculateBasePrice() + calculateToppingsPrice();
+
+        if (deepFried) {
+            total += 1.00; // Optional upcharge for frying.
+        }
+
+        return total;
+    }
 
 
     // -- Helper Methods --
