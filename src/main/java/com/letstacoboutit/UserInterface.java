@@ -16,13 +16,11 @@ public class UserInterface {
 
             switch (choice) {
                 case 1 -> createNewOrder();
-                case 2 -> displayCurrentOrder();
+                case 2 -> displayCurrentOrder(); //todo
                 case 3 -> running = false;
                 default -> console.printMessage("Invalid option. Please try again.");
             }
         }
-
-        exitProgram();
     }
 
 
