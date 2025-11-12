@@ -36,15 +36,17 @@ public class ConsoleHelper {
         while (true) {
             System.out.print(message + " (y/n): ");
             String input = scanner.nextLine().trim().toLowerCase();
-            if (input.equals("y") || input.equals("yes")) return true;
-            if (input.equals("n") || input.equals("no")) return false;
-            System.out.println("Please enter 'y' or 'n'.");
+            if (input.equals("y") || input.equals("yes"))
+                return true;
+            if (input.equals("n") || input.equals("no"))
+                return false;
+            System.out.println("Please enter 'y' or 'n'");
         }
     }
 
     // Simple pause to allow user to read screen before proceeding.
     public static void pause() {
-        System.out.println("\nPress Enter to continue...");
+        System.out.println("\nPress Enter to continue.");
         scanner.nextLine();
     }
 }
