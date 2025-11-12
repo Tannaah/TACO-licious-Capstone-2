@@ -7,7 +7,7 @@ public class UserInterface {
 
     // Entry point for the program.
     public void start() {
-        console.printMessage(" 🌮Welcome to Let's Taco 'Bout It!🌮 ");
+        console.printMessage("🌮Welcome to Let's Taco 'Bout It!🌮");
 
         boolean running = true;
         while (running) {
@@ -24,9 +24,17 @@ public class UserInterface {
 
         exitProgram();
     }
+
+
+    private void showMainMenu() {
+        console.printHeader("Main Menu");
+        console.printMessage("1. Create a new order");
+        console.printMessage("2. View current order");
+        console.printMessage("3. Exit");
+    }
 }
 
-/* UserInterface: The Control Center!
+    /* UserInterface: The Control Center!
      * The UserInterface class serves as the main interaction layer.
      * between the user and the Taco Ordering System.
      * It uses ConsoleHelper for input/output and manages the ordering flow.
