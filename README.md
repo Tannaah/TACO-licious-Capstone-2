@@ -51,13 +51,15 @@ Open the project in IntelliJ.
 
 Run Main.java to start the application.
 
-# Taco Class Framework/Outline
+# Taco Class Outline/Framework
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
 
 ## Taco Class Pricing Coding Plan
 <img width="2210" height="998" alt="Screen Shot 2025-11-11 at 18 34 01 PM" src="https://github.com/user-attachments/assets/e7acd481-8d60-4f0f-bc38-95d36e4eba50" />
 
-## Orders Class Outline/Framework
+## Order Class Outline/Framework
 <img width="2030" height="1490" alt="Screen Shot 2025-11-11 at 20 03 06 PM" src="https://github.com/user-attachments/assets/65d425f5-db97-49e6-b028-1909664a945c" />
 
+## ConsoleHelper Outline/Framework
+<img width="2202" height="1426" alt="Screen Shot 2025-11-12 at 09 39 46 AM" src="https://github.com/user-attachments/assets/5741fe67-ea43-4557-96d9-8773b67e4041" />
 
