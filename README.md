@@ -63,3 +63,5 @@ Run Main.java to start the application.
 ## ConsoleHelper Outline/Framework
 <img width="2202" height="1426" alt="Screen Shot 2025-11-12 at 09 39 46 AM" src="https://github.com/user-attachments/assets/5741fe67-ea43-4557-96d9-8773b67e4041" />
 
+## UserInterface Class Outline/Framework
+<img width="2250" height="1206" alt="Screen Shot 2025-11-12 at 10 46 13 AM" src="https://github.com/user-attachments/assets/9dbd7457-66cc-4d80-aa19-f6068a45eb01" />
