@@ -4,143 +4,75 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Taco {
+    private String size; // single taco, 3-taco plate, burrito
+    private String shell; // corn, flour, hard shell, bowl
+    private boolean isDeepFried;
+    private List<Topping> toppings;
 
-    // -- Fields --
-    private String size;            // Single, 3-Taco Plate, or Burrito.
-    private String shellType;       // corn, flour, hard shell, or bowl.
-    private List<String> meats;     // list to hold chosen meats.
-    private List<String> cheeses;   // list to hold chosen cheeses.
-    private List<String> toppings;  // list to hold other toppings. (lettuce, onion, etc.)
-    private List<String> sauces;    // list for sauces.
-    private boolean deepFried;      // true if taco is deep-fried.
-
-    // -- Constructor --
-    public Taco(String size, String shellType) {
+    public Taco(String size, String shell, boolean isDeepFried) {
         this.size = size;
-        this.shellType = shellType;
-        this.meats = new ArrayList<>();
-        this.cheeses = new ArrayList<>();
+        this.shell = shell;
+        this.isDeepFried = isDeepFried;
         this.toppings = new ArrayList<>();
-        this.sauces = new ArrayList<>();
-        this.deepFried = false; // default to not fried
     }
 
-    // -- Getters and Setters --
     public String getSize() {
         return size;
     }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getShellType() {
-        return shellType;
-    }
-
-    public void setShellType(String shellType) {
-        this.shellType = shellType;
-    }
-
-    public List<String> getMeats() {
-        return meats;
-    }
-
-    public List<String> getCheeses() {
-        return cheeses;
-    }
-
-    public List<String> getToppings() {
-        return toppings;
-    }
-
-    public List<String> getSauces() {
-        return sauces;
+    public String getShell() {
+        return shell;
     }
 
     public boolean isDeepFried() {
-        return deepFried;
+        return isDeepFried;
     }
 
-    public void setDeepFried(boolean deepFried) {
-        this.deepFried = deepFried;
+    public List<Topping> getToppings() {
+        return toppings;
     }
 
-
-    // Determines the base price based on the taco size!
-    public double calculateBasePrice() {
-        return switch (size.toLowerCase()) {
-            case "single taco" -> 3.50;
-            case "3-taco plate" -> 9.00;
-            case "burrito" -> 8.50;
-            default -> 0;
-        };
-    }
-
-    // Calculates additional cost from meats and cheeses
-    public double calculateToppingsPrice() {
-        double total = 0;
-
-        // Each meat adds to the cost
-        for (String meat : meats) {
-            total += switch (size.toLowerCase()) {
-                case "single taco" -> 1.00;
-                case "3-taco plate" -> 2.00;
-                case "burrito" -> 3.00;
-                default -> 0;
-            };
-        }
-
-        // Each cheese adds to the cost
-        for (String cheese : cheeses) {
-            total += switch (size.toLowerCase()) {
-                case "single taco" -> 0.75;
-                case "3-taco plate" -> 1.50;
-                case "burrito" -> 2.25;
-                default -> 0;
-            };
-        }
-        return total;
-    }
-
-
-    // Calculates total taco price (base + toppings + deep-fry)
-    public double calculateTotalPrice() {
-        double total = calculateBasePrice() + calculateToppingsPrice();
-
-        if (deepFried) {
-            total += 1.00; // Optional upcharge for frying.
-        }
-
-        return total;
-    }
-
-
-    // -- Helper Methods --
-    public void addMeat(String meat) {
-        meats.add(meat);
-    }
-
-    public void addCheese(String cheese) {
-        cheeses.add(cheese);
-    }
-
-    public void addTopping(String topping) {
+    public void addTopping(Topping topping) {
         toppings.add(topping);
     }
 
-    public void addSauce(String sauce) {
-        sauces.add(sauce);
-    }
+    // Calculates total price of this taco
+    public double calculatePrice() {
+        double basePrice;
 
+        switch (size.toLowerCase()) {
+            case "burrito":
+                basePrice = 6.50;
+                break;
+            case "3-taco plate":
+                basePrice = 5.00;
+                break;
+            default:
+                basePrice = 2.50; // single taco
+        }
+
+        double toppingTotal = 0;
+        for (Topping t : toppings) {
+            toppingTotal += t.getFinalPrice();
+        }
+
+        if (isDeepFried) {
+            basePrice += 1.00; // surcharge for deep-frying
+        }
+
+        return basePrice + toppingTotal;
+    }
 
     @Override
     public String toString() {
-        return size + " Taco (" + shellType + ")" +
-                (deepFried ? " [Deep Fried]" : "") +
-                "\nMeats: " + meats +
-                "\nCheeses: " + cheeses +
-                "\nToppings: " + toppings +
-                "\nSauces: " + sauces;
+        StringBuilder sb = new StringBuilder();
+        sb.append(size).append(" (").append(shell).append(" shell)");
+        if (isDeepFried) sb.append(" [deep fried]");
+        sb.append("\nToppings:");
+        for (Topping t : toppings) {
+            sb.append("\n - ").append(t.toString());
+        }
+        sb.append(String.format("\nTotal Taco Price: $%.2f", calculatePrice()));
+        return sb.toString();
     }
 }
