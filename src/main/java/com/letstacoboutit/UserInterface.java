@@ -7,7 +7,7 @@ public class UserInterface {
 
     // Entry point for the program.
     public void start() {
-        console.printMessage("🌮Welcome to Let's Taco 'Bout It!🌮");
+        console.printMessage("🌮 Welcome to Let's Taco 'Bout It! 🌮");
 
         boolean running = true;
         while (running) {
@@ -16,13 +16,12 @@ public class UserInterface {
 
             switch (choice) {
                 case 1 -> createNewOrder();
-                case 2 -> displayCurrentOrder(); //todo
+                case 2 -> displayCurrentOrder();
                 case 3 -> running = false;
                 default -> console.printMessage("Invalid option. Please try again.");
             }
         }
     }
-
 
     private void showMainMenu() {
         console.printHeader("Main Menu");
@@ -45,34 +44,6 @@ public class UserInterface {
 
             Taco taco = new Taco(size, shell, fry);
 
-            // Add Meat
-            String meat = console.readString("Add a meat (or leave blank to skip)");
-            if (!meat.isBlank()) {
-                boolean extra = console.readYesNo("Would you like extra meat?");
-                taco.addTopping(new Topping(meat, ToppingCategory.MEAT, extra, extra ? 1.00 : 0.75));
-            }
-
-            // Add Cheese
-            String cheese = console.readString("Add a cheese (or leave blank to skip)");
-            if (!cheese.isBlank()) {
-                boolean extra = console.readYesNo("Would you like extra cheese?");
-                taco.addTopping(new Topping(cheese, ToppingCategory.CHEESE, extra, extra ? 0.75 : 0.50));
-            }
-
-            // Add Veggie
-            String veggie = console.readString("Add a topping (or leave blank to skip)");
-            if (!veggie.isBlank()) {
-                boolean extra = console.readYesNo("Would you like extra of this topping?");
-                taco.addTopping(new Topping(veggie, ToppingCategory.VEGGIE, extra, extra ? 0.50 : 0.25));
-            }
-
-            // Add Sauce
-            String sauce = console.readString("Add a sauce (or leave blank to skip)");
-            if (!sauce.isBlank()) {
-                boolean extra = console.readYesNo("Would you like extra sauce?");
-                taco.addTopping(new Topping(sauce, ToppingCategory.SAUCE, extra, extra ? 0.40 : 0.25));
-            }
-
             currentOrder.addTaco(taco);
             console.printMessage("Taco added to your order!");
 
@@ -83,6 +54,39 @@ public class UserInterface {
         displayCurrentOrder();
     }
 
+    private void addToppingsToTaco(Taco taco) {
+        console.printHeader("Toppings Menu");
+
+        // MEAT
+        console.printMessage("Available Meats: carne asada, al pastor, carnitas, pollo, chorizo, pescado");
+        String meat = console.readString("Enter a meat (or leave blank to skip)");
+        if (!meat.isBlank()) {
+            boolean extra = console.readYesNo("Would you like extra meat?");
+            taco.addTopping(new Topping(meat, ToppingCategory.MEAT, extra, 1.00));
+        }
+
+        // CHEESE
+        console.printMessage("Available Cheeses: queso fresco, oaxaca, cotija, cheddar");
+        String cheese = console.readString("Enter a cheese (or leave blank to skip)");
+        if (!cheese.isBlank()) {
+            boolean extra = console.readYesNo("Would you like extra cheese?");
+            taco.addTopping(new Topping(cheese, ToppingCategory.CHEESE, extra, 0.75));
+        }
+
+        // VEGGIES
+        console.printMessage("Available Veggies: lettuce, cilantro, onions, tomatoes, jalapeños, radishes, pico de gallo, guacamole, corn");
+        String veggie = console.readString("Enter a veggie (or leave blank to skip)");
+        if (!veggie.isBlank()) {
+            taco.addTopping(new Topping(veggie, ToppingCategory.VEGGIE, false, 0));
+        }
+
+        // SAUCES
+        console.printMessage("Available Sauces: salsa verde, salsa roja, chipotle, habanero, mild, extra hot");
+        String sauce = console.readString("Enter a sauce (or leave blank to skip)");
+        if (!sauce.isBlank()) {
+            taco.addTopping(new Topping(sauce, ToppingCategory.SAUCE, false, 0));
+        }
+    }
 
     private void displayCurrentOrder() {
         if (currentOrder == null) {
@@ -93,6 +97,6 @@ public class UserInterface {
     }
 
     private void exitProgram() {
-        console.printMessage("Thank you for visiting Let's Taco 'Bout It! Have a Nice Day!");
+        console.printMessage("\nThank you for visiting Let's Taco 'Bout It! Have a nice day!");
     }
 }

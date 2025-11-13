@@ -2,7 +2,7 @@ package com.letstacoboutit;
 
 public class Topping {
     private String name;
-    private ToppingCategory category; // uses your enum instead of a String
+    private ToppingCategory category;
     private boolean isExtra;
     private double price;
 
@@ -29,9 +29,31 @@ public class Topping {
         return price;
     }
 
-    // Optional: price can increase if it's marked as extra
-    public double getFinalPrice() {
-        return isExtra ? price * 1.5 : price; // example: 50% extra charge
+
+    public double getFinalPrice(String tacoSize) {
+        double finalPrice = price;
+
+        if (isExtra) {
+            switch (category) {
+                case MEAT -> {
+                    switch (tacoSize.toLowerCase()) {
+                        case "burrito" -> finalPrice += 1.50;
+                        case "3-taco plate" -> finalPrice += 1.00;
+                        default -> finalPrice += 0.50;
+                    }
+                }
+                case CHEESE -> {
+                    switch (tacoSize.toLowerCase()) {
+                        case "burrito" -> finalPrice += 0.90;
+                        case "3-taco plate" -> finalPrice += 0.60;
+                        default -> finalPrice += 0.30;
+                    }
+                }
+                default -> {} // Veggies, sauces, others: no extra charge
+            }
+        }
+
+        return finalPrice;
     }
 
     @Override
