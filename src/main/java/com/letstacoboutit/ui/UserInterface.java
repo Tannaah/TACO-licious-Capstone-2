@@ -1,6 +1,8 @@
 package com.letstacoboutit.ui;
 
 import com.letstacoboutit.models.*;
+import com.letstacoboutit.models.signatures.StreetTaco;
+import com.letstacoboutit.models.signatures.SuperBurrito;
 
 public class UserInterface {
 
@@ -74,6 +76,7 @@ public class UserInterface {
                     case 2 -> addDrink();
                     case 3 -> addChipsAndSalsa();
                     case 4 -> checkout();
+                    case 5 -> addSignatureTaco();
                     case 0 -> {
                         cancelOrder();
                         ordering = false;
@@ -98,6 +101,7 @@ public class UserInterface {
         console.printMessage("2. Add Drink");
         console.printMessage("3. Add Chips & Salsa");
         console.printMessage("4. Checkout");
+        console.printMessage("5. Add Signature Taco");
         console.printMessage("0. Cancel Order");
     }
 
@@ -201,6 +205,95 @@ public class UserInterface {
 
         console.printMessage("Chips & Salsa added!\n");
     }
+
+    private void addSignatureTaco() {
+        console.printHeader("Signature Tacos");
+        console.printMessage("1. Street Taco");
+        console.printMessage("2. Super Burrito");
+        console.printMessage("0. Back");
+
+        int choice = console.readInt("Choose a signature taco");
+
+        switch (choice) {
+            case 1 -> {
+                Taco taco = new StreetTaco();
+                console.printMessage("Street Taco selected!");
+                modifyTacoOptions(taco);
+                currentOrder.addTaco(taco);
+            }
+            case 2 -> {
+                Taco taco = new SuperBurrito();
+                console.printMessage("Super Burrito selected!");
+                modifyTacoOptions(taco);
+                currentOrder.addTaco(taco);
+            }
+            case 0 -> {
+                console.printMessage("Returning...");
+                return;
+            }
+            default -> console.printMessage("Invalid option.");
+        }
+    }
+
+    private void modifyTacoOptions(Taco taco) {
+        console.printHeader("Customize Your Signature Taco");
+
+        boolean editing = true;
+        boolean modified = false; // track if the user makes ANY changes
+
+        while (editing) {
+            console.printMessage("1. Add toppings");
+            console.printMessage("2. Remove toppings");
+            console.printMessage("0. Done customizing");
+
+            int choice = console.readInt("Choose");
+
+            switch (choice) {
+                case 1 -> {
+                    addToppingsToTaco(taco);
+                    modified = true;
+                }
+                case 2 -> {
+                    removeToppingFromTaco(taco);
+                    modified = true;
+                }
+                case 0 -> editing = false;
+                default -> console.printMessage("Invalid option.");
+            }
+        }
+
+        if (!modified) {
+            console.printMessage("Signature added!");
+        } else {
+            console.printMessage("Signature customized & added!");
+        }
+    }
+
+
+    private void removeToppingFromTaco(Taco taco) {
+        if (taco.getToppings().isEmpty()) {
+            console.printMessage("No toppings to remove.");
+            return;
+        }
+
+        console.printMessage("Current Toppings:");
+        for (int i = 0; i < taco.getToppings().size(); i++) {
+            console.printMessage((i + 1) + ". " + taco.getToppings().get(i));
+        }
+
+        int choice = console.readInt("Which topping to remove (0 to cancel)");
+
+        if (choice == 0) return;
+
+        if (choice < 1 || choice > taco.getToppings().size()) {
+            console.printMessage("Invalid topping index.");
+            return;
+        }
+
+        taco.getToppings().remove(choice - 1);
+        console.printMessage("Topping removed!");
+    }
+
 
 
     // ===========================
