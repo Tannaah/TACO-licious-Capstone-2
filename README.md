@@ -1,6 +1,6 @@
 # 🌮 Let's Taco 'Bout It! 🌮
 ### (Taco Restaurant Management System Application)
-----
+-------------------------
 This is a object-oriented console-based restaurant management system built in Java! This program allows users to build taco orders, add sides and drinks, and receive receipt files.
 
 This system demonstrates strong Object-Oriented Programing design using:
@@ -29,20 +29,25 @@ File I/O is used to generate receipt files for each completed order.
 
 - Its Purpose: Create and manage customer orders.
 - Add fully customized Tacos:
-  - Choose taco size  
-  - Choose shell type  
-  - Add meats, cheeses, veggies, sauces  
-  - Add extra premium toppings  
-  - Option to deep-fry  
-- Add drinks (small/medium/large)  
-- Add chips & salsa (choose salsa type)  
+  - Choose taco size
+  - Choose shell type
+  - Add meats, cheeses, veggies, sauces
+  - Add extra premium toppings
+  - Option to deep-fry
+- Add drinks (small/medium/large)
+- Add chips & salsa (choose salsa type)
 - Signature Tacos (Bonus Feature)
-  - Street Taco  
-  - Super Burrito  
-  - Customizable (add/remove toppings)  
-- Input validation for all choices  
-- Auto-generated receipts saved as timestamped `.txt` files  
-- Organized folder structure using Object-Oriented Programing best practices  
+  - Street Taco
+  - Super Burrito
+  - Customizable (add/remove toppings)
+- Input validation for all choices
+- Auto-generated receipts saved as timestamped `.txt` files
+- Organized folder structure using Object-Oriented Programing best practices
+  
+-------------------------
+## ⭐️ Project Structure
+
+<img width="788" height="1278" alt="Screen Shot 2025-11-13 at 18 19 42 PM" src="https://github.com/user-attachments/assets/154bd3c5-9a3b-492c-ba5c-af3c7a59ba9d" />
 
 -------------------------
 
@@ -61,9 +66,11 @@ File I/O is used to generate receipt files for each completed order.
 ## UserInterface Class Outline/Framework
 <img width="2250" height="1206" alt="Screen Shot 2025-11-12 at 10 46 13 AM" src="https://github.com/user-attachments/assets/9dbd7457-66cc-4d80-aa19-f6068a45eb01" />
 
-
+-------------------------
 
 ## How to Run
 Clone the repository from GitHub.
 Open the project in IntelliJ.
 Run Main.java to start the application.
+
+-------------------------
