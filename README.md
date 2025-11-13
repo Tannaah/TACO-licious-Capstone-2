@@ -12,7 +12,7 @@ This system demonstrates strong Object-Oriented Programing design using:
 Every part of the order process — tacos, drinks, toppings, sides, and signature items. All are represented in its own class, making the system easy to read and maintain.
 
 -------------------------
-## Design and Thought Process
+## ⭐️ Design and Thought Process
 
 Before writing code, I identified the main components based on the Capstone Project Description. Such as the Classes, Packages and the organization. I also noted that the system needed a way to interact with users, manage pricing, and generate receipts.
 
@@ -25,25 +25,26 @@ Separate classes manage the Menu(s), provide order, and console interaction.
 File I/O is used to generate receipt files for each completed order.
 
 -------------------------
-## Features (to implement)
+## ⭐️ Features
 
-Create and customize tacos (shell, meat, cheese, toppings, sauces, extras).
+- Its Purpose: Create and manage customer orders.
+- Add fully customized Tacos:
+  - Choose taco size  
+  - Choose shell type  
+  - Add meats, cheeses, veggies, sauces  
+  - Add extra premium toppings  
+  - Option to deep-fry  
+- Add drinks (small/medium/large)  
+- Add chips & salsa (choose salsa type)  
+- Signature Tacos (Bonus Feature)
+  - Street Taco  
+  - Super Burrito  
+  - Customizable (add/remove toppings)  
+- Input validation for all choices  
+- Auto-generated receipts saved as timestamped `.txt` files  
+- Organized folder structure using Object-Oriented Programing best practices  
 
-Add drinks or chips & salsa to orders.
-
-Display full order summary and total cost.
-
-Save receipt file with unique date-time filename.
-
-Handle input validation and cancel/exit options gracefully.
-
-## How to Run
-
-Clone the repository from GitHub.
-
-Open the project in IntelliJ.
-
-Run Main.java to start the application.
+-------------------------
 
 # Taco Class Outline/Framework
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
@@ -59,3 +60,10 @@ Run Main.java to start the application.
 
 ## UserInterface Class Outline/Framework
 <img width="2250" height="1206" alt="Screen Shot 2025-11-12 at 10 46 13 AM" src="https://github.com/user-attachments/assets/9dbd7457-66cc-4d80-aa19-f6068a45eb01" />
+
+
+
+## How to Run
+Clone the repository from GitHub.
+Open the project in IntelliJ.
+Run Main.java to start the application.
