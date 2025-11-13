@@ -1,21 +1,19 @@
 package com.letstacoboutit.models.signatures;
 
-public class SuperBurrito {
-}
+import com.letstacoboutit.models.Taco;
+import com.letstacoboutit.models.Topping;
+import com.letstacoboutit.models.ToppingCategory;
 
-// SuperBurrito Class
-// -----------------------------
-// • A Signature Burrito template.
-// • Extends the base Taco class.
-// • Automatically comes with:
-//   - Burrito size
-//   - Flour tortilla
-//   - Not Deep-Fried
-//   - Preloaded toppings:
-//    * carnitas        (MEAT)
-//    * cheddar         (CHEESE)
-//    * pico de gallo   (VEGGIE)
-//    * lettuce         (VEGGIE)
-//    * tomatoes        (VEGGIE)
-//    * birria dipped   (SAUCE)
-// • After selecting this item, the customer can optionally customize it further using the normal topping flow.
+public class SuperBurrito extends Taco {
+
+    public SuperBurrito() {
+        super("Burrito", "flour", false);
+
+        addTopping(new Topping("carnitas", ToppingCategory.MEAT, false, 1.00));
+        addTopping(new Topping("cheddar", ToppingCategory.CHEESE, false, 0.75));
+        addTopping(new Topping("pico de gallo", ToppingCategory.VEGGIE, false, 0));
+        addTopping(new Topping("lettuce", ToppingCategory.VEGGIE, false, 0));
+        addTopping(new Topping("tomatoes", ToppingCategory.VEGGIE, false, 0));
+        addTopping(new Topping("birria dipped", ToppingCategory.SAUCE, false, 0));
+    }
+}

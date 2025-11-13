@@ -1,20 +1,18 @@
 package com.letstacoboutit.models.signatures;
 
-public class StreetTaco {
-}
+import com.letstacoboutit.models.Taco;
+import com.letstacoboutit.models.Topping;
+import com.letstacoboutit.models.ToppingCategory;
 
-// StreetTaco Class
-// -----------------------------
-// • A Signature Taco template.
-// • Extends the base Taco class.
-// • Automatically comes with:
-//   - 3-Taco Plate size
-//   - Corn tortillas
-//   - Not Deep-Fried
-//   - Preloaded toppings:
-//      * carne asada  (MEAT)
-//      * onions       (VEGGIE)
-//      * cilantro     (VEGGIE)
-//      * salsa verde  (SAUCE)
-//      * lime wedges  (OTHER)
-// • After selecting this item, the customer can optionally customize it by adding or removing toppings.
+public class StreetTaco extends Taco {
+
+    public StreetTaco() {
+        super("3-Taco Plate", "corn", false);
+
+        addTopping(new Topping("carne asada", ToppingCategory.MEAT, false, 1.00));
+        addTopping(new Topping("onions", ToppingCategory.VEGGIE, false, 0));
+        addTopping(new Topping("cilantro", ToppingCategory.VEGGIE, false, 0));
+        addTopping(new Topping("salsa verde", ToppingCategory.SAUCE, false, 0));
+        addTopping(new Topping("lime wedges", ToppingCategory.OTHER, false, 0));
+    }
+}
