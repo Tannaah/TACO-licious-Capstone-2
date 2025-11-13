@@ -50,6 +50,24 @@ File I/O is used to generate receipt files for each completed order.
 <img width="788" height="1278" alt="Screen Shot 2025-11-13 at 18 19 42 PM" src="https://github.com/user-attachments/assets/154bd3c5-9a3b-492c-ba5c-af3c7a59ba9d" />
 
 -------------------------
+## ⭐️ Receipts Folder
+When an order is checked out:
+
+A folder named receipts/ is automatically created (if it doesn't exist)
+
+Each receipt contains:
+
+- Customer name
+
+- Full taco details
+
+- Drinks & sides
+
+- Total price
+
+- Completion status
+
+-------------------------
 
 # Taco Class Outline/Framework
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
