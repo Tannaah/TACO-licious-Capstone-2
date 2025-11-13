@@ -5,7 +5,9 @@ public class UserInterface {
     private final ConsoleHelper console = new ConsoleHelper();
     private Order currentOrder;
 
-    // Entry point for the program.
+    // ===========================
+    //       START PROGRAM
+    // ===========================
     public void start() {
         console.printMessage("🌮Welcome to Let's Taco 'Bout It!🌮");
 
@@ -16,23 +18,27 @@ public class UserInterface {
 
             switch (choice) {
                 case 1 -> createNewOrder();
-                case 2 -> displayCurrentOrder();
-                case 3 -> running = false;
+                case 0 -> {
+                    running = false;
+                    console.printMessage("Thank you for stopping by!");
+                }
                 default -> console.printMessage("Invalid option. Please try again.");
             }
         }
     }
 
-    // ------------------ HOME SCREEN ------------------
-
+    // ===========================
+    //        HOME SCREEN
+    // ===========================
     private void showMainMenu() {
         console.printHeader("Main Menu");
         console.printMessage("1. New Order");
         console.printMessage("0. Exit");
     }
 
-    // ------------------ ORDER CREATION ------------------
-
+    // ===========================
+    //      CREATE NEW ORDER
+    // ===========================
     private void createNewOrder() {
         String name = console.readString("Enter customer name");
         currentOrder = new Order(name);
@@ -49,14 +55,18 @@ public class UserInterface {
                 case 2 -> addDrink();
                 case 3 -> addChipsAndSalsa();
                 case 4 -> checkout();
-                case 0 -> cancelOrder();
+                case 0 -> {
+                    cancelOrder();
+                    ordering = false;
+                }
                 default -> console.printMessage("Invalid choice.");
             }
         }
     }
 
-    // ------------------ ORDER SCREEN ------------------
-
+    // ===========================
+    //        ORDER SCREEN
+    // ===========================
     private void showOrderScreen() {
         console.printHeader("Order Screen");
         console.printMessage("1. Add Taco");
@@ -66,8 +76,9 @@ public class UserInterface {
         console.printMessage("0. Cancel Order");
     }
 
-    // ------------------ ADD TACO ------------------
-
+    // ===========================
+    //          ADD TACO
+    // ===========================
     private void addTaco() {
         console.printHeader("Create a Taco");
 
@@ -80,7 +91,7 @@ public class UserInterface {
         addToppingsToTaco(taco);
 
         currentOrder.addTaco(taco);
-        console.printMessage("🌮 Taco added!\n");
+        console.printMessage("🌮Taco added!\n");
     }
 
     private void addToppingsToTaco(Taco taco) {
@@ -117,8 +128,9 @@ public class UserInterface {
         }
     }
 
-    // ------------------ ADD DRINK ------------------
-
+    // ===========================
+    //         ADD DRINK
+    // ===========================
     private void addDrink() {
         console.printHeader("Add a Drink");
 
@@ -136,11 +148,12 @@ public class UserInterface {
         Drink drink = new Drink(flavor, size, price);
         currentOrder.addItem(drink);
 
-        console.printMessage("🥤 Drink added!\n");
+        console.printMessage("🥤Drink added!\n");
     }
 
-    // ------------------ ADD CHIPS & SALSA ------------------
-
+    // ===========================
+    //     ADD CHIPS & SALSA
+    // ===========================
     private void addChipsAndSalsa() {
         console.printHeader("Add Chips & Salsa");
 
@@ -152,8 +165,9 @@ public class UserInterface {
         console.printMessage("Chips & Salsa added!\n");
     }
 
-    // ------------------ CHECKOUT ------------------
-
+    // ===========================
+    //          CHECKOUT
+    // ===========================
     private void checkout() {
         console.printHeader("CHECKOUT");
 
@@ -162,7 +176,7 @@ public class UserInterface {
         boolean confirm = console.readYesNo("Confirm order");
         if (confirm) {
             currentOrder.setCompleted(true);
-            saveReceipt();
+            currentOrder.saveReceipt(); // call real method inside Order.java
             console.printMessage("Order completed! Returning to main menu.\n");
             currentOrder = null;
         } else {
@@ -170,20 +184,17 @@ public class UserInterface {
         }
     }
 
-    private void saveReceipt() {
-        // placeholder — we'll implement file writing after this
-        console.printMessage("(Receipt file saved — to be implemented)");
-    }
-
-    // ------------------ CANCEL ORDER ------------------
-
+    // ===========================
+    //        CANCEL ORDER
+    // ===========================
     private void cancelOrder() {
         console.printMessage("Order canceled. Returning to home screen.\n");
         currentOrder = null;
     }
 
-    // ------------------ VIEW CURRENT ORDER ------------------
-
+    // ===========================
+    //   VIEW CURRENT ORDER
+    // ===========================
     private void displayCurrentOrder() {
         if (currentOrder == null) {
             console.printMessage("No active order.");

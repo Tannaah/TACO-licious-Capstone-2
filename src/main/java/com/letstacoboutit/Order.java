@@ -117,6 +117,32 @@ public class Order {
         System.out.println(getOrderSummary());
     }
 
+    public void saveReceipt() {
+        try {
+            // Create receipts folder if it doesn't exist
+            java.io.File folder = new java.io.File("receipts");
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+
+            // Generate timestamp-based filename
+            java.time.LocalDateTime now = java.time.LocalDateTime.now();
+            String timestamp = now.format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
+            String fileName = "receipts/" + timestamp + ".txt";
+
+            // Write the file
+            java.io.FileWriter writer = new java.io.FileWriter(fileName);
+            writer.write(getOrderSummary());
+            writer.close();
+
+            System.out.println("\nReceipt saved as: " + fileName);
+
+        } catch (Exception e) {
+            System.out.println("Error saving receipt: " + e.getMessage());
+        }
+    }
+
+
     @Override
     public String toString() {
         return "Order #" + orderId + " for " + customerName +
