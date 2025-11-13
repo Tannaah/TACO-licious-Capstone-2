@@ -8,8 +8,8 @@ public class UserInterface {
     private Order currentOrder;
 
     // Valid taco options
-    private final String[] validSizes = { "single taco", "3-taco plate", "burrito" };
-    private final String[] validShells = { "corn", "flour", "hard shell", "bowl" };
+    private final String[] validSizes = {"single taco", "3-taco plate", "burrito"};
+    private final String[] validShells = {"corn", "flour", "hard shell", "bowl"};
 
     private final String[] validMeats = {"carne asada", "al pastor", "carnitas", "pollo", "chorizo", "pescado"};
 
@@ -19,8 +19,8 @@ public class UserInterface {
 
     private final String[] validSauces = {"salsa verde", "salsa roja", "chipotle", "habanero", "mild", "extra hot"};
 
-    private final String[] validDrinkSizes = { "small", "medium", "large" };
-    private final String[] validSalsaTypes = { "mild", "spicy", "verde", "roja" };
+    private final String[] validDrinkSizes = {"small", "medium", "large"};
+    private final String[] validSalsaTypes = {"mild", "spicy", "verde", "roja"};
 
 
     // ===========================
@@ -64,20 +64,27 @@ public class UserInterface {
         console.printMessage("New order started for " + name + "!");
 
         boolean ordering = true;
-        while (ordering) {
-            showOrderScreen();
-            int choice = console.readInt("Choose an option");
+        try {
+            while (ordering) {
+                showOrderScreen();
+                int choice = console.readInt("Choose an option");
 
-            switch (choice) {
-                case 1 -> addTaco();
-                case 2 -> addDrink();
-                case 3 -> addChipsAndSalsa();
-                case 4 -> checkout();
-                case 0 -> {
-                    cancelOrder();
-                    ordering = false;
+                switch (choice) {
+                    case 1 -> addTaco();
+                    case 2 -> addDrink();
+                    case 3 -> addChipsAndSalsa();
+                    case 4 -> checkout();
+                    case 0 -> {
+                        cancelOrder();
+                        ordering = false;
+                    }
+                    default -> console.printMessage("Invalid choice.");
                 }
-                default -> console.printMessage("Invalid choice.");
+            }
+
+        } catch (RuntimeException e) {
+            if (!"Order Complete".equals(e.getMessage())) {
+                throw e;
             }
         }
     }
@@ -163,7 +170,7 @@ public class UserInterface {
         console.printHeader("Add a Drink");
 
         console.printMessage("Drink Sizes: small, medium, large");
-        String size = console.readString("Enter drink size");
+        String size = console.readOption("Enter drink size", validDrinkSizes);
 
         String flavor = console.readString("Enter drink flavor");
 
@@ -179,19 +186,22 @@ public class UserInterface {
         console.printMessage("🥤Drink added!\n");
     }
 
+
     // ===========================
     //     ADD CHIPS & SALSA
     // ===========================
     private void addChipsAndSalsa() {
         console.printHeader("Add Chips & Salsa");
 
-        String salsa = console.readString("Enter salsa type (mild, spicy, verde, roja)");
+        console.printMessage("Valid salsa types: mild, spicy, verde, roja");
+        String salsa = console.readOption("Enter salsa type", validSalsaTypes);
 
         ChipsAndSalsa cs = new ChipsAndSalsa(salsa, 1.50);
         currentOrder.addItem(cs);
 
         console.printMessage("Chips & Salsa added!\n");
     }
+
 
     // ===========================
     //          CHECKOUT
@@ -204,13 +214,19 @@ public class UserInterface {
         boolean confirm = console.readYesNo("Confirm order");
         if (confirm) {
             currentOrder.setCompleted(true);
-            currentOrder.saveReceipt(); // call real method inside Order.java
+            currentOrder.saveReceipt();
+
             console.printMessage("Order completed! Returning to main menu.\n");
+
             currentOrder = null;
+
+            throw new RuntimeException("Order Complete");
+
         } else {
             console.printMessage("Checkout canceled.\n");
         }
     }
+
 
     // ===========================
     //        CANCEL ORDER
