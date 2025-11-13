@@ -1,4 +1,6 @@
-package com.letstacoboutit;
+package com.letstacoboutit.ui;
+
+import com.letstacoboutit.models.*;
 
 public class UserInterface {
 

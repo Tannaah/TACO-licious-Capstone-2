@@ -1,4 +1,4 @@
-package com.letstacoboutit;
+package com.letstacoboutit.models;
 
 public class Drink extends MenuItem {
 

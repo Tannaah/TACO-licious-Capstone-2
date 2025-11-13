@@ -1,0 +1,16 @@
+
+===== ORDER SUMMARY =====
+Order #1 for Tanner Hodges
+Completed: Yes
+--------------------------
+🌮TACOS:
+1) burrito (bowl shell) (deep-fried)
+Toppings:
+ - pollo (extra)
+ - cheddar
+ - tomatoes
+Total Taco Price: $12.75
+   Price: $12.75
+--------------------------
+💰 TOTAL: $12.75
+==========================

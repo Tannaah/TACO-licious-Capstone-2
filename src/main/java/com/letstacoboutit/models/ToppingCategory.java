@@ -1,4 +1,4 @@
-package com.letstacoboutit;
+package com.letstacoboutit.models;
 
 // Enum to define topping categories
 public enum ToppingCategory {

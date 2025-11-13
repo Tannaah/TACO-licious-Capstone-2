@@ -1,4 +1,4 @@
-package com.letstacoboutit;
+package com.letstacoboutit.ui;
 
 import java.util.Scanner;
 

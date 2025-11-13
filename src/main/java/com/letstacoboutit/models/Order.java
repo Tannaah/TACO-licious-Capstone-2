@@ -1,4 +1,4 @@
-package com.letstacoboutit;
+package com.letstacoboutit.models;
 
 import java.util.ArrayList;
 import java.util.List;

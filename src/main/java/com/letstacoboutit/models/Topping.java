@@ -1,4 +1,4 @@
-package com.letstacoboutit;
+package com.letstacoboutit.models;
 
 public class Topping {
     private String name;
