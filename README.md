@@ -12,18 +12,17 @@ This system demonstrates strong Object-Oriented Programing design using:
 Every part of the order process — tacos, drinks, toppings, sides, and signature items. All are represented in its own class, making the system easy to read and maintain.
 
 -------------------------
-## Design Thought Process
-Before writing code, I identified the main objects in the system based on the Capstone project description: tacos, toppings, drinks, and orders. I also noted that the system needed a way to interact with users, manage pricing, and generate receipts.
+## Design and Thought Process
 
-Key ideas: Each taco is an object that holds its own configuration (shell, toppings, extras, etc.).
+Before writing code, I identified the main components based on the Capstone Project Description. Such as the Classes, Packages and the organization. I also noted that the system needed a way to interact with users, manage pricing, and generate receipts.
+
+Pre-code Ideas:
 
 An order contains multiple tacos or other menu items.
 
-Separate classes manage the menu logic, order flow, and console interaction.
+Separate classes manage the Menu(s), provide order, and console interaction.
 
 File I/O is used to generate receipt files for each completed order.
-
-
 
 -------------------------
 ## Features (to implement)
