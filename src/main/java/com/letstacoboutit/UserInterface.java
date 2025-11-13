@@ -7,7 +7,7 @@ public class UserInterface {
 
     // Entry point for the program.
     public void start() {
-        console.printMessage("🌮 Welcome to Let's Taco 'Bout It! 🌮");
+        console.printMessage("🌮Welcome to Let's Taco 'Bout It!🌮");
 
         boolean running = true;
         while (running) {
@@ -23,80 +23,172 @@ public class UserInterface {
         }
     }
 
+    // ------------------ HOME SCREEN ------------------
+
     private void showMainMenu() {
         console.printHeader("Main Menu");
-        console.printMessage("1. Create a new order");
-        console.printMessage("2. View current order");
-        console.printMessage("3. Exit");
+        console.printMessage("1. New Order");
+        console.printMessage("0. Exit");
     }
+
+    // ------------------ ORDER CREATION ------------------
 
     private void createNewOrder() {
         String name = console.readString("Enter customer name");
         currentOrder = new Order(name);
 
-        boolean addingTacos = true;
-        while (addingTacos) {
-            console.printHeader("Create a Taco");
+        console.printMessage("New order started for " + name + "!");
 
-            String size = console.readString("Enter size (Single Taco, 3-Taco Plate, Burrito)");
-            String shell = console.readString("Enter shell type (corn, flour, hard shell, bowl)");
-            boolean fry = console.readYesNo("Would you like it deep fried?");
+        boolean ordering = true;
+        while (ordering) {
+            showOrderScreen();
+            int choice = console.readInt("Choose an option");
 
-            Taco taco = new Taco(size, shell, fry);
-
-            currentOrder.addTaco(taco);
-            console.printMessage("Taco added to your order!");
-
-            addingTacos = console.readYesNo("Would you like to add another taco?");
+            switch (choice) {
+                case 1 -> addTaco();
+                case 2 -> addDrink();
+                case 3 -> addChipsAndSalsa();
+                case 4 -> checkout();
+                case 0 -> cancelOrder();
+                default -> console.printMessage("Invalid choice.");
+            }
         }
+    }
 
-        console.printMessage("\nOrder created successfully!");
-        displayCurrentOrder();
+    // ------------------ ORDER SCREEN ------------------
+
+    private void showOrderScreen() {
+        console.printHeader("Order Screen");
+        console.printMessage("1. Add Taco");
+        console.printMessage("2. Add Drink");
+        console.printMessage("3. Add Chips & Salsa");
+        console.printMessage("4. Checkout");
+        console.printMessage("0. Cancel Order");
+    }
+
+    // ------------------ ADD TACO ------------------
+
+    private void addTaco() {
+        console.printHeader("Create a Taco");
+
+        String size = console.readString("Enter size (Single Taco, 3-Taco Plate, Burrito)");
+        String shell = console.readString("Enter shell type (corn, flour, hard shell, bowl)");
+        boolean fry = console.readYesNo("Would you like it deep fried");
+
+        Taco taco = new Taco(size, shell, fry);
+
+        addToppingsToTaco(taco);
+
+        currentOrder.addTaco(taco);
+        console.printMessage("🌮 Taco added!\n");
     }
 
     private void addToppingsToTaco(Taco taco) {
         console.printHeader("Toppings Menu");
 
-        // MEAT
-        console.printMessage("Available Meats: carne asada, al pastor, carnitas, pollo, chorizo, pescado");
-        String meat = console.readString("Enter a meat (or leave blank to skip)");
+        // ---- MEAT ----
+        console.printMessage("Meats: carne asada, al pastor, carnitas, pollo, chorizo, pescado");
+        String meat = console.readString("Add a meat (blank to skip)");
         if (!meat.isBlank()) {
-            boolean extra = console.readYesNo("Would you like extra meat?");
+            boolean extra = console.readYesNo("Extra meat");
             taco.addTopping(new Topping(meat, ToppingCategory.MEAT, extra, 1.00));
         }
 
-        // CHEESE
-        console.printMessage("Available Cheeses: queso fresco, oaxaca, cotija, cheddar");
-        String cheese = console.readString("Enter a cheese (or leave blank to skip)");
+        // ---- CHEESE ----
+        console.printMessage("Cheeses: queso fresco, oaxaca, cotija, cheddar");
+        String cheese = console.readString("Add a cheese (blank to skip)");
         if (!cheese.isBlank()) {
-            boolean extra = console.readYesNo("Would you like extra cheese?");
+            boolean extra = console.readYesNo("Extra cheese");
             taco.addTopping(new Topping(cheese, ToppingCategory.CHEESE, extra, 0.75));
         }
 
-        // VEGGIES
-        console.printMessage("Available Veggies: lettuce, cilantro, onions, tomatoes, jalapeños, radishes, pico de gallo, guacamole, corn");
-        String veggie = console.readString("Enter a veggie (or leave blank to skip)");
+        // ---- VEGGIES ----
+        console.printMessage("Veggies: lettuce, cilantro, onions, tomatoes, jalapeños, radishes, pico de gallo, guacamole, corn");
+        String veggie = console.readString("Add a veggie (blank to skip)");
         if (!veggie.isBlank()) {
             taco.addTopping(new Topping(veggie, ToppingCategory.VEGGIE, false, 0));
         }
 
-        // SAUCES
-        console.printMessage("Available Sauces: salsa verde, salsa roja, chipotle, habanero, mild, extra hot");
-        String sauce = console.readString("Enter a sauce (or leave blank to skip)");
+        // ---- SAUCE ----
+        console.printMessage("Sauces: salsa verde, salsa roja, chipotle, habanero, mild, extra hot");
+        String sauce = console.readString("Add a sauce (blank to skip)");
         if (!sauce.isBlank()) {
             taco.addTopping(new Topping(sauce, ToppingCategory.SAUCE, false, 0));
         }
     }
 
+    // ------------------ ADD DRINK ------------------
+
+    private void addDrink() {
+        console.printHeader("Add a Drink");
+
+        console.printMessage("Drink Sizes: small, medium, large");
+        String size = console.readString("Enter drink size");
+
+        String flavor = console.readString("Enter drink flavor");
+
+        double price = switch (size.toLowerCase()) {
+            case "medium" -> 2.50;
+            case "large" -> 3.00;
+            default -> 2.00;
+        };
+
+        Drink drink = new Drink(flavor, size, price);
+        currentOrder.addItem(drink);
+
+        console.printMessage("🥤 Drink added!\n");
+    }
+
+    // ------------------ ADD CHIPS & SALSA ------------------
+
+    private void addChipsAndSalsa() {
+        console.printHeader("Add Chips & Salsa");
+
+        String salsa = console.readString("Enter salsa type (mild, spicy, verde, roja)");
+
+        ChipsAndSalsa cs = new ChipsAndSalsa(salsa, 1.50);
+        currentOrder.addItem(cs);
+
+        console.printMessage("Chips & Salsa added!\n");
+    }
+
+    // ------------------ CHECKOUT ------------------
+
+    private void checkout() {
+        console.printHeader("CHECKOUT");
+
+        currentOrder.printOrderSummary();
+
+        boolean confirm = console.readYesNo("Confirm order");
+        if (confirm) {
+            currentOrder.setCompleted(true);
+            saveReceipt();
+            console.printMessage("Order completed! Returning to main menu.\n");
+            currentOrder = null;
+        } else {
+            console.printMessage("Checkout canceled.\n");
+        }
+    }
+
+    private void saveReceipt() {
+        // placeholder — we'll implement file writing after this
+        console.printMessage("(Receipt file saved — to be implemented)");
+    }
+
+    // ------------------ CANCEL ORDER ------------------
+
+    private void cancelOrder() {
+        console.printMessage("Order canceled. Returning to home screen.\n");
+        currentOrder = null;
+    }
+
+    // ------------------ VIEW CURRENT ORDER ------------------
+
     private void displayCurrentOrder() {
         if (currentOrder == null) {
-            console.printMessage("No current order. Please create one first.");
+            console.printMessage("No active order.");
             return;
         }
         currentOrder.printOrderSummary();
-    }
-
-    private void exitProgram() {
-        console.printMessage("\nThank you for visiting Let's Taco 'Bout It! Have a nice day!");
     }
 }
