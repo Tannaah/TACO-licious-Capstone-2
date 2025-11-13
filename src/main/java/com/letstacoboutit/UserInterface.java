@@ -87,7 +87,6 @@ public class UserInterface {
         boolean fry = console.readYesNo("Would you like it deep fried");
 
         Taco taco = new Taco(size, shell, fry);
-
         addToppingsToTaco(taco);
 
         currentOrder.addTaco(taco);
@@ -190,16 +189,5 @@ public class UserInterface {
     private void cancelOrder() {
         console.printMessage("Order canceled. Returning to home screen.\n");
         currentOrder = null;
-    }
-
-    // ===========================
-    //   VIEW CURRENT ORDER
-    // ===========================
-    private void displayCurrentOrder() {
-        if (currentOrder == null) {
-            console.printMessage("No active order.");
-            return;
-        }
-        currentOrder.printOrderSummary();
     }
 }

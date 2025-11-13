@@ -53,10 +53,10 @@ public class ConsoleHelper {
             System.out.println("Please enter 'Yes' or 'No'");
         }
     }
-
-    // Simple pause to allow user to read screen before proceeding.
-    public void pause() {
-        System.out.println("\nPress Enter to continue.");
-        scanner.nextLine();
-    }
 }
+//    // Simple pause to allow user to read screen before proceeding.
+//    public void pause() {
+//        System.out.println("\nPress Enter to continue.");
+//        scanner.nextLine();
+//    }
+//}
