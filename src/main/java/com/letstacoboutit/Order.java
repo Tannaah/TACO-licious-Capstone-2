@@ -6,17 +6,19 @@ import java.util.List;
 public class Order {
 
     // -- Fields --
-    private static int nextOrderId = 1; // Static counter for unique IDs.
+    private static int nextOrderId = 1;
     private int orderId;
     private String customerName;
     private List<Taco> tacos;
-    private boolean completed; // Marks whether the order is done.
+    private List<MenuItem> sidesAndDrinks; // chips, salsa, drinks, etc.
+    private boolean completed;
 
     // -- Constructor --
     public Order(String customerName) {
         this.orderId = nextOrderId++;
         this.customerName = customerName;
         this.tacos = new ArrayList<>();
+        this.sidesAndDrinks = new ArrayList<>();
         this.completed = false;
     }
 
@@ -37,6 +39,10 @@ public class Order {
         return tacos;
     }
 
+    public List<MenuItem> getSidesAndDrinks() {
+        return sidesAndDrinks;
+    }
+
     public boolean isCompleted() {
         return completed;
     }
@@ -47,51 +53,69 @@ public class Order {
 
     // -- Core Methods --
 
-    // Adds a taco to the order list.
     public void addTaco(Taco taco) {
         tacos.add(taco);
     }
 
-    // Calculates total cost of all tacos in this order.
-    public double calculateTotal() {
-        double total = 0;
-        for (Taco taco : tacos) {
-            total += taco.calculateTotalPrice();
-        }
-        return total;
+    public void addItem(MenuItem item) {
+        sidesAndDrinks.add(item);
     }
 
-    // Returns the total number of tacos in this order.
     public int getTacoCount() {
         return tacos.size();
     }
 
-    // Returns a formatted summary string of the full order.
-    public String getOrderSummary() {
-        StringBuilder summary = new StringBuilder();
-        summary.append("\n--- Order Summary ---\n");
-        summary.append("Order #").append(orderId)
-                .append(" for ").append(customerName)
-                .append("\nCompleted: ").append(completed ? "Yes" : "No")
-                .append("\n----------------------\n");
+    // Calculate total for tacos + sides/drinks
+    public double calculateTotal() {
+        double total = 0.0;
 
-        for (int i = 0; i < tacos.size(); i++) {
-            summary.append("Taco #").append(i + 1).append(":\n");
-            summary.append(tacos.get(i).toString()).append("\n");
-            summary.append(String.format("Price: $%.2f%n", tacos.get(i).calculateTotalPrice()));
-            summary.append("----------------------\n");
-
+        for (Taco taco : tacos) {
+            total += taco.calculatePrice();
         }
 
-        summary.append(String.format("TOTAL: $%.2f%n", calculateTotal()));
-        summary.append("----------------------\n");
+        for (MenuItem item : sidesAndDrinks) {
+            total += item.getPrice();
+        }
+
+        return total;
+    }
+
+    // Summary builder (returns as string)
+    public String getOrderSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append("\n===== ORDER SUMMARY =====\n");
+        summary.append("Order #").append(orderId).append(" for ").append(customerName).append("\n");
+        summary.append("Completed: ").append(completed ? "Yes" : "No").append("\n");
+        summary.append("--------------------------\n");
+
+        if (tacos.isEmpty() && sidesAndDrinks.isEmpty()) {
+            summary.append("No items in this order.\n");
+        } else {
+            if (!tacos.isEmpty()) {
+                summary.append("🌮TACOS:\n");
+                for (int i = 0; i < tacos.size(); i++) {
+                    summary.append(String.format("%d) %s\n", (i + 1), tacos.get(i).toString()));
+                    summary.append(String.format("   Price: $%.2f\n", tacos.get(i).calculatePrice()));
+                }
+            }
+
+            if (!sidesAndDrinks.isEmpty()) {
+                summary.append("\nSIDES & DRINKS:\n");
+                for (MenuItem m : sidesAndDrinks) {
+                    summary.append(String.format("- %s ($%.2f)\n", m.getName(), m.getPrice()));
+                }
+            }
+        }
+
+        summary.append("--------------------------\n");
+        summary.append(String.format("💰 TOTAL: $%.2f%n", calculateTotal()));
+        summary.append("==========================\n");
         return summary.toString();
     }
 
     public void printOrderSummary() {
         System.out.println(getOrderSummary());
     }
-
 
     @Override
     public String toString() {
