@@ -7,6 +7,22 @@ public class UserInterface {
     private final ConsoleHelper console = new ConsoleHelper();
     private Order currentOrder;
 
+    // Valid taco options
+    private final String[] validSizes = { "single taco", "3-taco plate", "burrito" };
+    private final String[] validShells = { "corn", "flour", "hard shell", "bowl" };
+
+    private final String[] validMeats = {"carne asada", "al pastor", "carnitas", "pollo", "chorizo", "pescado"};
+
+    private final String[] validCheeses = {"queso fresco", "oaxaca", "cotija", "cheddar"};
+
+    private final String[] validVeggies = {"lettuce", "cilantro", "onions", "tomatoes", "jalapeños", "radishes", "pico de gallo", "guacamole", "corn"};
+
+    private final String[] validSauces = {"salsa verde", "salsa roja", "chipotle", "habanero", "mild", "extra hot"};
+
+    private final String[] validDrinkSizes = { "small", "medium", "large" };
+    private final String[] validSalsaTypes = { "mild", "spicy", "verde", "roja" };
+
+
     // ===========================
     //       START PROGRAM
     // ===========================
@@ -84,16 +100,22 @@ public class UserInterface {
     private void addTaco() {
         console.printHeader("Create a Taco");
 
-        String size = console.readString("Enter size (Single Taco, 3-Taco Plate, Burrito)");
-        String shell = console.readString("Enter shell type (corn, flour, hard shell, bowl)");
+        console.printMessage("Valid sizes: Single Taco, 3-Taco Plate, Burrito");
+        String size = console.readOption("Enter size", validSizes);
+
+        console.printMessage("Valid shells: corn, flour, hard shell, bowl");
+        String shell = console.readOption("Enter shell type", validShells);
+
         boolean fry = console.readYesNo("Would you like it deep fried");
 
         Taco taco = new Taco(size, shell, fry);
+
         addToppingsToTaco(taco);
 
         currentOrder.addTaco(taco);
         console.printMessage("🌮Taco added!\n");
     }
+
 
     private void addToppingsToTaco(Taco taco) {
         console.printHeader("Toppings Menu");
@@ -102,6 +124,7 @@ public class UserInterface {
         console.printMessage("Meats: carne asada, al pastor, carnitas, pollo, chorizo, pescado");
         String meat = console.readString("Add a meat (blank to skip)");
         if (!meat.isBlank()) {
+            meat = console.readOption("Confirm meat", validMeats);
             boolean extra = console.readYesNo("Extra meat");
             taco.addTopping(new Topping(meat, ToppingCategory.MEAT, extra, 1.00));
         }
@@ -110,6 +133,7 @@ public class UserInterface {
         console.printMessage("Cheeses: queso fresco, oaxaca, cotija, cheddar");
         String cheese = console.readString("Add a cheese (blank to skip)");
         if (!cheese.isBlank()) {
+            cheese = console.readOption("Confirm cheese", validCheeses);
             boolean extra = console.readYesNo("Extra cheese");
             taco.addTopping(new Topping(cheese, ToppingCategory.CHEESE, extra, 0.75));
         }
@@ -118,6 +142,7 @@ public class UserInterface {
         console.printMessage("Veggies: lettuce, cilantro, onions, tomatoes, jalapeños, radishes, pico de gallo, guacamole, corn");
         String veggie = console.readString("Add a veggie (blank to skip)");
         if (!veggie.isBlank()) {
+            veggie = console.readOption("Confirm veggie", validVeggies);
             taco.addTopping(new Topping(veggie, ToppingCategory.VEGGIE, false, 0));
         }
 
@@ -125,9 +150,11 @@ public class UserInterface {
         console.printMessage("Sauces: salsa verde, salsa roja, chipotle, habanero, mild, extra hot");
         String sauce = console.readString("Add a sauce (blank to skip)");
         if (!sauce.isBlank()) {
+            sauce = console.readOption("Confirm sauce", validSauces);
             taco.addTopping(new Topping(sauce, ToppingCategory.SAUCE, false, 0));
         }
     }
+
 
     // ===========================
     //         ADD DRINK

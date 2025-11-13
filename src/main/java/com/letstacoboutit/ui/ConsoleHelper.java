@@ -53,10 +53,19 @@ public class ConsoleHelper {
             System.out.println("Please enter 'Yes' or 'No'");
         }
     }
+    // Prompts the user for a valid option from a list
+    public String readOption(String message, String[] validOptions) {
+        while (true) {
+            System.out.print(message + ": ");
+            String input = scanner.nextLine().trim().toLowerCase();
+
+            for (String option : validOptions) {
+                if (input.equalsIgnoreCase(option)) {
+                    return option; // valid choice
+                }
+            }
+
+            System.out.println("Invalid option. Please enter one of the listed choices.");
+        }
+    }
 }
-//    // Simple pause to allow user to read screen before proceeding.
-//    public void pause() {
-//        System.out.println("\nPress Enter to continue.");
-//        scanner.nextLine();
-//    }
-//}

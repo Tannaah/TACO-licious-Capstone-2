@@ -53,7 +53,7 @@ public class Taco {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(size).append(" (").append(shell).append(" shell)");
+        sb.append(size).append(" ").append(shell).append(" ");
         if (isDeepFried) sb.append(" (deep-fried)");
         sb.append("\nToppings:");
         for (Topping t : toppings) {
