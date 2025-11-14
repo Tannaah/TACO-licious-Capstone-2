@@ -50,6 +50,78 @@ File I/O is used to generate receipt files for each completed order.
 <img width="788" height="1278" alt="Screen Shot 2025-11-13 at 18 19 42 PM" src="https://github.com/user-attachments/assets/154bd3c5-9a3b-492c-ba5c-af3c7a59ba9d" />
 
 -------------------------
+## ⭐️ Class Breakdown & Responsibilities
+#### Below is a high-level overview of each Class in the project and its purpose within the system.
+
+### ConsoleHelper
+Utility class that handles all user input and output:
+- Prints headers and messages
+- Reads String, int, and Yes/No input
+- Validates options (using readOption)
+- Ensures the UI stays clean and consistent
+
+### UserInterface
+The core controller for the entire application:
+- Displays all screens (Home, Order Screen, Taco Builder, etc.)
+- Manages the flow of a customer’s order
+- Coordinates input validation
+- Handles checkout, order cancellation, and calling saveReceipt()
+
+### Order
+Represents the full customer order:
+- Stores tacos, drinks, and sides
+- Calculates totals
+- Generates a formatted summary
+- Saves the receipt file to /receipts/ with a timestamp
+
+### Taco
+Represents a customizable taco:
+- Tracks size, shell type, deep-fried option
+- Holds a list of toppings
+- Calculates price based on size + toppings + extra charges
+
+### Topping
+Represents an individual topping chosen by the user:
+- Tracks category (meat/cheese/veggie/sauce/etc.)
+- Applies “extra” pricing rules
+- Works with taco price calculation
+
+### MenuItem
+Base class for drinks and chips & salsa:
+- Stores name and price
+- Used for polymorphic storage in Order
+
+### Drink
+Represents a drink:
+- Inherits MenuItem
+- Stores drink size + flavor
+
+### ChipsAndSalsa
+Represents a chips & salsa item:
+- Inherits MenuItem
+- Stores salsa type
+
+## Signature Taco Classes
+#### Optional “bonus feature” templates that inherit from Taco.
+
+### StreetTaco
+Preset 3-taco plate with:
+- Corn tortillas
+- Carne asada
+- Onion & cilantro
+- Salsa verde
+- Lime wedges Customer can still modify toppings afterward.
+
+### SuperBurrito
+Preset burrito with:
+- Flour tortilla
+- Carnitas
+- Cheddar
+- Pico de gallo
+- Lettuce
+- Tomato
+- Birria dipped Customizable like any other taco.
+-------------------------
 ## ⭐️ Class Diagram (UML)
 
 ```mermaid
