@@ -49,7 +49,7 @@ public class Topping {
                         default -> finalPrice += 0.30;
                     }
                 }
-                default -> {} // Veggies, sauces, others: no extra charge
+                default -> {} // Veggies, Sauces, others: no extra charge.
             }
         }
 

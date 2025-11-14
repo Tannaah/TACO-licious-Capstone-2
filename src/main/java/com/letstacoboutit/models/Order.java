@@ -108,7 +108,7 @@ public class Order {
         }
 
         summary.append("--------------------------\n");
-        summary.append(String.format("💰 TOTAL: $%.2f%n", calculateTotal()));
+        summary.append(String.format("💰TOTAL: $%.2f%n", calculateTotal()));
         summary.append("==========================\n");
         return summary.toString();
     }

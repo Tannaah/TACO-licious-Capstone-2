@@ -4,6 +4,7 @@ import com.letstacoboutit.models.*;
 import com.letstacoboutit.models.signatures.StreetTaco;
 import com.letstacoboutit.models.signatures.SuperBurrito;
 
+
 public class UserInterface {
 
     private final ConsoleHelper console = new ConsoleHelper();
@@ -29,7 +30,8 @@ public class UserInterface {
     //       START PROGRAM
     // ===========================
     public void start() {
-        console.printMessage("🌮Welcome to Let's Taco 'Bout It!🌮");
+        console.printMessage("\n" + ConsoleHelper.BRIGHT_RED + "🌮 Welcome to Let's Taco 'Bout It! 🌮" + ConsoleHelper.RESET);
+
 
         boolean running = true;
         while (running) {
@@ -40,7 +42,7 @@ public class UserInterface {
                 case 1 -> createNewOrder();
                 case 0 -> {
                     running = false;
-                    console.printMessage("Thank you for stopping by!");
+                    console.printMessage("\n" + ConsoleHelper.BRIGHT_YELLOW + "🌮 Thanks So Much for Visiting Let's Taco 'Bout It Restaurant! Have a Nice Day. 🌮" + ConsoleHelper.RESET);
                 }
                 default -> console.printMessage("Invalid option. Please try again.");
             }
@@ -60,7 +62,7 @@ public class UserInterface {
     //      CREATE NEW ORDER
     // ===========================
     private void createNewOrder() {
-        String name = console.readString("Enter customer name");
+        String name = console.readString(ConsoleHelper.BRIGHT_GREEN + "Enter customer name" + ConsoleHelper.RESET);
         currentOrder = new Order(name);
 
         console.printMessage("New order started for " + name + "!");
@@ -111,20 +113,20 @@ public class UserInterface {
     private void addTaco() {
         console.printHeader("Create a Taco");
 
-        console.printMessage("Valid sizes: Single Taco, 3-Taco Plate, Burrito");
-        String size = console.readOption("Enter size", validSizes);
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Valid sizes: Single Taco, 3-Taco Plate, Burrito" + ConsoleHelper.RESET);
+        String size = console.readOption(ConsoleHelper.BRIGHT_GREEN + "Enter size" + ConsoleHelper.RESET, validSizes );
 
-        console.printMessage("Valid shells: corn, flour, hard shell, bowl");
-        String shell = console.readOption("Enter shell type", validShells);
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Valid shells: corn, flour, hard shell, bowl" + ConsoleHelper.RESET);
+        String shell = console.readOption(ConsoleHelper.BRIGHT_GREEN + "Enter shell type" + ConsoleHelper.RESET, validShells);
 
-        boolean fry = console.readYesNo("Would you like it deep fried");
+        boolean fry = console.readYesNo(ConsoleHelper.BRIGHT_YELLOW + "Would you like it deep fried" + ConsoleHelper.RESET);
 
         Taco taco = new Taco(size, shell, fry);
 
         addToppingsToTaco(taco);
 
         currentOrder.addTaco(taco);
-        console.printMessage("🌮Taco added!\n");
+        console.printMessage("\n🌮Taco added!🌮");
     }
 
 
@@ -132,34 +134,34 @@ public class UserInterface {
         console.printHeader("Toppings Menu");
 
         // ---- MEAT ----
-        console.printMessage("Meats: carne asada, al pastor, carnitas, pollo, chorizo, pescado");
-        String meat = console.readString("Add a meat (blank to skip)");
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Meats: carne asada, al pastor, carnitas, pollo, chorizo, pescado" +  ConsoleHelper.RESET);
+        String meat = console.readString(ConsoleHelper.BRIGHT_GREEN + "Add a meat (blank to skip)" +  ConsoleHelper.RESET);
         if (!meat.isBlank()) {
             meat = console.readOption("Confirm meat", validMeats);
-            boolean extra = console.readYesNo("Extra meat");
+            boolean extra = console.readYesNo("Extra meat? (Will Cost Extra)");
             taco.addTopping(new Topping(meat, ToppingCategory.MEAT, extra, 1.00));
         }
 
         // ---- CHEESE ----
-        console.printMessage("Cheeses: queso fresco, oaxaca, cotija, cheddar");
-        String cheese = console.readString("Add a cheese (blank to skip)");
+        console.printMessage(ConsoleHelper.BRIGHT_GREEN + "Cheeses: queso fresco, oaxaca, cotija, cheddar" + ConsoleHelper.RESET);
+        String cheese = console.readString(ConsoleHelper.BRIGHT_GREEN + "Add a cheese (blank to skip)" + ConsoleHelper.RESET);
         if (!cheese.isBlank()) {
             cheese = console.readOption("Confirm cheese", validCheeses);
-            boolean extra = console.readYesNo("Extra cheese");
+            boolean extra = console.readYesNo("Extra cheese? (Will Cost Extra)");
             taco.addTopping(new Topping(cheese, ToppingCategory.CHEESE, extra, 0.75));
         }
 
         // ---- VEGGIES ----
-        console.printMessage("Veggies: lettuce, cilantro, onions, tomatoes, jalapeños, radishes, pico de gallo, guacamole, corn");
-        String veggie = console.readString("Add a veggie (blank to skip)");
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Veggies: lettuce, cilantro, onions, tomatoes, jalapeños, radishes, pico de gallo, guacamole, corn" + ConsoleHelper.RESET);
+        String veggie = console.readString(ConsoleHelper.BRIGHT_GREEN + "Add a veggie (blank to skip)" + ConsoleHelper.RESET);
         if (!veggie.isBlank()) {
             veggie = console.readOption("Confirm veggie", validVeggies);
             taco.addTopping(new Topping(veggie, ToppingCategory.VEGGIE, false, 0));
         }
 
         // ---- SAUCE ----
-        console.printMessage("Sauces: salsa verde, salsa roja, chipotle, habanero, mild, extra hot");
-        String sauce = console.readString("Add a sauce (blank to skip)");
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Sauces: salsa verde, salsa roja, chipotle, habanero, mild, extra hot" + ConsoleHelper.RESET);
+        String sauce = console.readString(ConsoleHelper.BRIGHT_GREEN + "Add a sauce (blank to skip)" + ConsoleHelper.RESET);
         if (!sauce.isBlank()) {
             sauce = console.readOption("Confirm sauce", validSauces);
             taco.addTopping(new Topping(sauce, ToppingCategory.SAUCE, false, 0));
@@ -173,10 +175,10 @@ public class UserInterface {
     private void addDrink() {
         console.printHeader("Add a Drink");
 
-        console.printMessage("Drink Sizes: small, medium, large");
+        console.printMessage(ConsoleHelper.BRIGHT_GREEN + "Drink Sizes: Small, Medium, Large" + ConsoleHelper.RESET);
         String size = console.readOption("Enter drink size", validDrinkSizes);
 
-        String flavor = console.readString("Enter drink flavor");
+        String flavor = console.readString(ConsoleHelper.BRIGHT_YELLOW + "Enter drink flavor: Fruit Punch, Pineapple, or Guava" + ConsoleHelper.RESET);
 
         double price = switch (size.toLowerCase()) {
             case "medium" -> 2.50;
@@ -187,7 +189,7 @@ public class UserInterface {
         Drink drink = new Drink(flavor, size, price);
         currentOrder.addItem(drink);
 
-        console.printMessage("🥤Drink added!\n");
+        console.printMessage("\n🥤Drink added!🥤");
     }
 
 
@@ -197,13 +199,13 @@ public class UserInterface {
     private void addChipsAndSalsa() {
         console.printHeader("Add Chips & Salsa");
 
-        console.printMessage("Valid salsa types: mild, spicy, verde, roja");
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Valid salsa types: mild, spicy, verde, roja" + ConsoleHelper.RESET);
         String salsa = console.readOption("Enter salsa type", validSalsaTypes);
 
         ChipsAndSalsa cs = new ChipsAndSalsa(salsa, 1.50);
         currentOrder.addItem(cs);
 
-        console.printMessage("Chips & Salsa added!\n");
+        console.printMessage("\n🥫Chips & Salsa added!🥫");
     }
 
     private void addSignatureTaco() {
@@ -263,9 +265,9 @@ public class UserInterface {
         }
 
         if (!modified) {
-            console.printMessage("Signature added!");
+            console.printMessage("\n" + ConsoleHelper.BRIGHT_RED + "Signature added!" + ConsoleHelper.RESET);
         } else {
-            console.printMessage("Signature customized & added!");
+            console.printMessage("\n" + ConsoleHelper.BRIGHT_RED + "Signature customized & added!" +  ConsoleHelper.RESET);
         }
     }
 
@@ -304,19 +306,19 @@ public class UserInterface {
 
         currentOrder.printOrderSummary();
 
-        boolean confirm = console.readYesNo("Confirm order");
+        boolean confirm = console.readYesNo(ConsoleHelper.BRIGHT_YELLOW + "Confirm order" + ConsoleHelper.RESET);
         if (confirm) {
             currentOrder.setCompleted(true);
             currentOrder.saveReceipt();
 
-            console.printMessage("Order completed! Returning to main menu.\n");
+            console.printMessage(ConsoleHelper.BRIGHT_GREEN + "Order completed! Returning to Main Menu.\n" + ConsoleHelper.RESET);
 
             currentOrder = null;
 
             throw new RuntimeException("Order Complete");
 
         } else {
-            console.printMessage("Checkout canceled.\n");
+            console.printMessage("\n" + ConsoleHelper.BRIGHT_GREEN + "Checkout Canceled." + ConsoleHelper.RESET);
         }
     }
 
@@ -325,7 +327,7 @@ public class UserInterface {
     //        CANCEL ORDER
     // ===========================
     private void cancelOrder() {
-        console.printMessage("Order canceled. Returning to home screen.\n");
+        console.printMessage("\n" + ConsoleHelper.BRIGHT_GREEN + "Order canceled. Returning to Home Screen." +  ConsoleHelper.RESET);
         currentOrder = null;
     }
 }

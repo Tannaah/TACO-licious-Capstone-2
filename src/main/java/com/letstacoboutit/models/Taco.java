@@ -35,7 +35,7 @@ public class Taco {
         }
 
         if (isDeepFried) {
-            basePrice += 1.00; // $1 surcharge for deep-frying
+            basePrice += 1.00; // $1 surcharge for Deep-Frying
         }
 
         return basePrice + toppingTotal;
@@ -46,7 +46,7 @@ public class Taco {
         switch (size.toLowerCase()) {
             case "burrito": return 8.50;
             case "3-taco plate": return 9.00;
-            default: return 3.50; // single taco
+            default: return 3.50; // Single-Taco
         }
     }
 
