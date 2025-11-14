@@ -119,7 +119,7 @@ public class UserInterface {
         console.printMessage(ConsoleHelper.BRIGHT_RED + "Valid shells: corn, flour, hard shell, bowl" + ConsoleHelper.RESET);
         String shell = console.readOption(ConsoleHelper.BRIGHT_GREEN + "Enter shell type" + ConsoleHelper.RESET, validShells);
 
-        boolean fry = console.readYesNo(ConsoleHelper.BRIGHT_YELLOW + "Would you like it deep fried" + ConsoleHelper.RESET);
+        boolean fry = console.readYesNo(ConsoleHelper.BRIGHT_YELLOW + "Would you like it Deep-Fried" + ConsoleHelper.RESET);
 
         Taco taco = new Taco(size, shell, fry);
 
@@ -143,7 +143,7 @@ public class UserInterface {
         }
 
         // ---- CHEESE ----
-        console.printMessage(ConsoleHelper.BRIGHT_GREEN + "Cheeses: queso fresco, oaxaca, cotija, cheddar" + ConsoleHelper.RESET);
+        console.printMessage(ConsoleHelper.BRIGHT_RED + "Cheeses: queso fresco, oaxaca, cotija, cheddar" + ConsoleHelper.RESET);
         String cheese = console.readString(ConsoleHelper.BRIGHT_GREEN + "Add a cheese (blank to skip)" + ConsoleHelper.RESET);
         if (!cheese.isBlank()) {
             cheese = console.readOption("Confirm cheese", validCheeses);
