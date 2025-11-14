@@ -121,6 +121,7 @@ Preset burrito with:
 - Lettuce
 - Tomato
 - Birria dipped Customizable like any other taco.
+
 -------------------------
 ## ⭐️ Class Diagram (UML)
 
@@ -293,9 +294,10 @@ Each receipt contains:
 
 -------------------------
 
-## How to Run
-Clone the repository from GitHub.
-Open the project in IntelliJ.
-Run Main.java to start the application.
+## ⭐️ How to Run
+This was made using Java Code and was made in IntelliJ.
+1. Clone the repository from GitHub.
+2. Open the project in IntelliJ.
+3. Run Main.java to start the application.
 
 -------------------------
