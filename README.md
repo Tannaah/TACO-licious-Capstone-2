@@ -84,6 +84,12 @@ Each receipt contains:
 ## UserInterface Class Outline/Framework
 <img width="2250" height="1206" alt="Screen Shot 2025-11-12 at 10 46 13 AM" src="https://github.com/user-attachments/assets/9dbd7457-66cc-4d80-aa19-f6068a45eb01" />
 
+## StreetTaco Class Outline/Framework
+<img width="1800" height="992" alt="Screen Shot 2025-11-13 at 15 20 32 PM" src="https://github.com/user-attachments/assets/9b721a9b-932b-4949-92a4-36b1549784ff" />
+
+## SuperBurrito Class Outline/Framework
+<img width="1894" height="1014" alt="Screen Shot 2025-11-13 at 15 21 52 PM" src="https://github.com/user-attachments/assets/bf60fb86-be2a-407c-85b5-9c61ea386636" />
+
 -------------------------
 
 ## How to Run
