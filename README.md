@@ -1,67 +1,313 @@
-# Let's Taco 'Bout It
-This is a console-based restaurant management system built in Java!
+# 🌮 Let's Taco 'Bout It! 🌮
+### (Taco Restaurant Management System Application)
+-------------------------
+This is a object-oriented console-based restaurant management system built in Java! This program allows users to build taco orders, add sides and drinks, and receive receipt files.
 
-Custom Taco Ordering System Overview:
+This system demonstrates strong Object-Oriented Programing design using:
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Abstraction
 
-TACO-licious is a point-of-sale console application designed to automate the taco ordering process for a custom taco shop. Customers can build tacos or burritos with fully customizable shells, toppings, and sides, then check out and receive a digital receipt.
+Every part of the order process — tacos, drinks, toppings, sides, and signature items. All are represented in its own class, making the system easy to read and maintain.
 
-This project demonstrates advanced Java Object-Oriented Programming (OOP) principles such as encapsulation, abstraction, inheritance, and polymorphism.
+-------------------------
+## ⭐️ Design and Thought Process
 
+Before writing code, I identified the main components based on the Capstone Project Description. Such as the Classes, Packages and the organization. I also noted that the system needed a way to interact with users, manage pricing, and generate receipts.
 
-## Design Thought Process
-
-Before writing code, I identified the main objects in the system based on the problem description: tacos, toppings, drinks, and orders. I also noted that the system needed a way to interact with users, manage pricing, and generate receipts.
-
-Key ideas: Each taco is an object that holds its own configuration (shell, toppings, extras, etc.).
+Pre-code Ideas:
 
 An order contains multiple tacos or other menu items.
 
-Separate classes manage the menu logic, order flow, and console interaction.
+Separate classes manage the Menu(s), provide order, and console interaction.
 
 File I/O is used to generate receipt files for each completed order.
 
+-------------------------
+## ⭐️ Features
 
-## Planned Class Structure
-| Category         | Class                                  | Responsibility                                |
-| ---------------- | -------------------------------------- | --------------------------------------------- |
-| Core Models      | `Taco`, `Topping`, `Order`, `MenuItem` | Represent food items and how they’re composed |
-| Menu Logic       | `Menu`, `PricingHelper`                | Handle price lookups and category management  |
-| User Interaction | `ConsoleHelper`, `UserInterface`       | Manage prompts and user input                 |
-| Persistence      | `ReceiptFileManager`                   | Save completed order receipts                 |
-| Utility          | `App` or `Main`                        | Entry point to start the application          |
+- Its Purpose: Create and manage customer orders.
+- Add fully customized Tacos:
+  - Choose taco size
+  - Choose shell type
+  - Add meats, cheeses, veggies, sauces
+  - Add extra premium toppings
+  - Option to deep-fry
+- Add drinks (small/medium/large)
+- Add chips & salsa (choose salsa type)
+- Signature Tacos (Bonus Feature)
+  - Street Taco
+  - Super Burrito
+  - Customizable (add/remove toppings)
+- Input validation for all choices
+- Auto-generated receipts saved as timestamped `.txt` files
+- Organized folder structure using Object-Oriented Programing best practices
+  
+-------------------------
+## ⭐️ Project Structure
 
+<img width="788" height="1278" alt="Screen Shot 2025-11-13 at 18 19 42 PM" src="https://github.com/user-attachments/assets/154bd3c5-9a3b-492c-ba5c-af3c7a59ba9d" />
 
-## Features (to implement)
+-------------------------
+## ⭐️ Class Breakdown & Responsibilities
+#### Below is a high-level overview of each Class in the project and its purpose within the system.
 
-Create and customize tacos (shell, meat, cheese, toppings, sauces, extras).
+### ConsoleHelper
+Utility class that handles all user input and output:
+- Prints headers and messages
+- Reads String, int, and Yes/No input
+- Validates options (using readOption)
+- Ensures the UI stays clean and consistent
 
-Add drinks or chips & salsa to orders.
+### UserInterface
+The core controller for the entire application:
+- Displays all screens (Home, Order Screen, Taco Builder, etc.)
+- Manages the flow of a customer’s order
+- Coordinates input validation
+- Handles checkout, order cancellation, and calling saveReceipt()
 
-Display full order summary and total cost.
+### Order
+Represents the full customer order:
+- Stores tacos, drinks, and sides
+- Calculates totals
+- Generates a formatted summary
+- Saves the receipt file to /receipts/ with a timestamp
 
-Save receipt file with unique date-time filename.
+### Taco
+Represents a customizable taco:
+- Tracks size, shell type, deep-fried option
+- Holds a list of toppings
+- Calculates price based on size + toppings + extra charges
 
-Handle input validation and cancel/exit options gracefully.
+### Topping
+Represents an individual topping chosen by the user:
+- Tracks category (meat/cheese/veggie/sauce/etc.)
+- Applies “extra” pricing rules
+- Works with taco price calculation
 
-## How to Run
+### MenuItem
+Base class for drinks and chips & salsa:
+- Stores name and price
+- Used for polymorphic storage in Order
 
-Clone the repository from GitHub.
+### Drink
+Represents a drink:
+- Inherits MenuItem
+- Stores drink size + flavor
 
-Open the project in IntelliJ.
+### ChipsAndSalsa
+Represents a chips & salsa item:
+- Inherits MenuItem
+- Stores salsa type
 
-Run Main.java to start the application.
+## Signature Taco Classes
+#### Optional “bonus feature” templates that inherit from Taco.
 
-# Taco Class Outline/Framework
+### StreetTaco
+Preset 3-taco plate with:
+- Corn tortillas
+- Carne asada
+- Onion & cilantro
+- Salsa verde
+- Lime wedges Customer can still modify toppings afterward.
+
+### SuperBurrito
+Preset burrito with:
+- Flour tortilla
+- Carnitas
+- Cheddar
+- Pico de gallo
+- Lettuce
+- Tomato
+- Birria dipped Customizable like any other taco.
+
+-------------------------
+## ⭐️ Class Diagram (UML)
+
+```mermaid
+classDiagram
+    class UserInterface {
+        -ConsoleHelper console
+        -Order currentOrder
+        +start()
+        -showMainMenu()
+        -createNewOrder()
+        -showOrderScreen()
+        -addTaco()
+        -addDrink()
+        -addChipsAndSalsa()
+        -addSignatureTaco()
+        -modifyTacoOptions()
+        -removeToppingFromTaco()
+        -checkout()
+        -cancelOrder()
+    }
+
+    class ConsoleHelper {
+        -Scanner scanner
+        +printHeader(text)
+        +printMessage(text)
+        +readString(msg)
+        +readInt(msg)
+        +readYesNo(msg)
+        +readOption(msg,valid[])
+        +pause()
+    }
+
+    class Order {
+        -int orderId
+        -String customerName
+        -List~Taco~ tacos
+        -List~MenuItem~ sidesAndDrinks
+        -boolean completed
+        +addTaco()
+        +addItem()
+        +calculateTotal()
+        +getOrderSummary()
+        +saveReceipt()
+    }
+
+    class Taco {
+        -String size
+        -String shell
+        -boolean isDeepFried
+        -List~Topping~ toppings
+        +addTopping()
+        +calculatePrice()
+    }
+
+    class Topping {
+        -String name
+        -ToppingCategory category
+        -boolean isExtra
+        -double price
+        +getFinalPrice(size)
+    }
+
+    class MenuItem {
+        -String name
+        -double price
+        +getPrice()
+    }
+
+    class Drink {
+        -String size
+    }
+
+    class ChipsAndSalsa {
+        -String salsaType
+    }
+
+    class StreetTaco {
+    }
+
+    class SuperBurrito {
+    }
+
+    UserInterface --> ConsoleHelper
+    UserInterface --> Order
+
+    Order --> Taco
+    Order --> MenuItem
+
+    Taco --> Topping
+    Topping --> ToppingCategory
+
+    Drink --|> MenuItem
+    ChipsAndSalsa --|> MenuItem
+
+    StreetTaco --|> Taco
+    SuperBurrito --|> Taco
+```
+
+-------------------------
+## ⭐️ Screens & User Flow
+
+### MAIN MENU
+1. New Order
+0. Exit
+   
+Enter your choice: 
+
+Enter Customer Name:
+
+-------------------------
+### ORDER SCREEN
+1. Add Taco
+2. Add Drink
+3. Add Chips & Salsa
+4. Checkout
+5. Add Signature Taco
+0. Cancel Order
+   
+Choose an option:
+
+-------------------------
+### SIGNATURE TACOS
+1. Street Taco
+2. Super Burrito
+0. Back
+   
+Choose a signature taco:
+
+-------------------------
+## ⭐️ Receipts Folder
+When an order is checked out:
+
+A folder named receipts/ is automatically created (if it doesn't exist)
+
+Each receipt contains:
+
+- Customer name
+
+- Full taco details
+
+- Drinks & sides
+
+- Total price
+
+- Completion status
+
+-------------------------
+## ⭐️ Class Outlines/Frameworks
+
+-------------------------
+### Taco Class Outline/Framework
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
 
-## Taco Class Pricing Coding Plan
+### Taco Class Pricing Coding Plan
 <img width="2210" height="998" alt="Screen Shot 2025-11-11 at 18 34 01 PM" src="https://github.com/user-attachments/assets/e7acd481-8d60-4f0f-bc38-95d36e4eba50" />
 
-## Order Class Outline/Framework
+### Order Class Outline/Framework
 <img width="2030" height="1490" alt="Screen Shot 2025-11-11 at 20 03 06 PM" src="https://github.com/user-attachments/assets/65d425f5-db97-49e6-b028-1909664a945c" />
 
-## ConsoleHelper Outline/Framework
+### ConsoleHelper Outline/Framework
 <img width="2202" height="1426" alt="Screen Shot 2025-11-12 at 09 39 46 AM" src="https://github.com/user-attachments/assets/5741fe67-ea43-4557-96d9-8773b67e4041" />
 
-## UserInterface Class Outline/Framework
+### UserInterface Class Outline/Framework
 <img width="2250" height="1206" alt="Screen Shot 2025-11-12 at 10 46 13 AM" src="https://github.com/user-attachments/assets/9dbd7457-66cc-4d80-aa19-f6068a45eb01" />
+
+### StreetTaco Class Outline/Framework
+<img width="1800" height="992" alt="Screen Shot 2025-11-13 at 15 20 32 PM" src="https://github.com/user-attachments/assets/9b721a9b-932b-4949-92a4-36b1549784ff" />
+
+### SuperBurrito Class Outline/Framework
+<img width="1894" height="1014" alt="Screen Shot 2025-11-13 at 15 21 52 PM" src="https://github.com/user-attachments/assets/bf60fb86-be2a-407c-85b5-9c61ea386636" />
+
+-------------------------
+## ⭐️ How to Run
+This was made using Java Code and was made in IntelliJ.
+1. Clone the repository from GitHub.
+2. Open the project in IntelliJ.
+3. Run Main.java to start the application.
+
+-------------------------
+## ⭐️ Reflection and Closing
+Something this Capstone Project pushed me to learn on a deeper level was understaing Object-Oriented Programming. I also learned how large projects like this grow step by step and that forming a plan of the construction early makes working through it easier.
+
+Debugging the code flow in each class and preventing unwanted loops was chellenging for me. It made me slow down and think carefully about the program and how the code should work and talk to each other.
+
+I’m genuinely proud of how polished this capstone project turned out, and I'm glad I kept on improving it piece by piece and finishing with something that feels professional and thoughtful that I'm happy to present.
+
+-------------------------
+# ⭐️ Developed by Tanner Hodges.
