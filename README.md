@@ -149,6 +149,36 @@ classDiagram
 ```
 
 -------------------------
+## ⭐️ Screens & User Flow
+
+### MAIN MENU
+1. New Order
+0. Exit
+   
+Enter your choice: 
+
+Enter Customer Name:
+
+-------------------------
+### ORDER SCREEN
+1. Add Taco
+2. Add Drink
+3. Add Chips & Salsa
+4. Checkout
+5. Add Signature Taco
+0. Cancel Order
+   
+Choose an option:
+
+-------------------------
+### SIGNATURE TACOS
+1. Street Taco
+2. Super Burrito
+0. Back
+   
+Choose a signature taco:
+
+-------------------------
 ## ⭐️ Receipts Folder
 When an order is checked out:
 
