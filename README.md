@@ -50,6 +50,105 @@ File I/O is used to generate receipt files for each completed order.
 <img width="788" height="1278" alt="Screen Shot 2025-11-13 at 18 19 42 PM" src="https://github.com/user-attachments/assets/154bd3c5-9a3b-492c-ba5c-af3c7a59ba9d" />
 
 -------------------------
+## ⭐️ Class Diagram (UML)
+
+```mermaid
+classDiagram
+    class UserInterface {
+        -ConsoleHelper console
+        -Order currentOrder
+        +start()
+        -showMainMenu()
+        -createNewOrder()
+        -showOrderScreen()
+        -addTaco()
+        -addDrink()
+        -addChipsAndSalsa()
+        -addSignatureTaco()
+        -modifyTacoOptions()
+        -removeToppingFromTaco()
+        -checkout()
+        -cancelOrder()
+    }
+
+    class ConsoleHelper {
+        -Scanner scanner
+        +printHeader(text)
+        +printMessage(text)
+        +readString(msg)
+        +readInt(msg)
+        +readYesNo(msg)
+        +readOption(msg,valid[])
+        +pause()
+    }
+
+    class Order {
+        -int orderId
+        -String customerName
+        -List~Taco~ tacos
+        -List~MenuItem~ sidesAndDrinks
+        -boolean completed
+        +addTaco()
+        +addItem()
+        +calculateTotal()
+        +getOrderSummary()
+        +saveReceipt()
+    }
+
+    class Taco {
+        -String size
+        -String shell
+        -boolean isDeepFried
+        -List~Topping~ toppings
+        +addTopping()
+        +calculatePrice()
+    }
+
+    class Topping {
+        -String name
+        -ToppingCategory category
+        -boolean isExtra
+        -double price
+        +getFinalPrice(size)
+    }
+
+    class MenuItem {
+        -String name
+        -double price
+        +getPrice()
+    }
+
+    class Drink {
+        -String size
+    }
+
+    class ChipsAndSalsa {
+        -String salsaType
+    }
+
+    class StreetTaco {
+    }
+
+    class SuperBurrito {
+    }
+
+    UserInterface --> ConsoleHelper
+    UserInterface --> Order
+
+    Order --> Taco
+    Order --> MenuItem
+
+    Taco --> Topping
+    Topping --> ToppingCategory
+
+    Drink --|> MenuItem
+    ChipsAndSalsa --|> MenuItem
+
+    StreetTaco --|> Taco
+    SuperBurrito --|> Taco
+```
+
+-------------------------
 ## ⭐️ Receipts Folder
 When an order is checked out:
 
@@ -69,7 +168,7 @@ Each receipt contains:
 
 -------------------------
 
-# Taco Class Outline/Framework
+# ⭐️ Taco Class Outline/Framework
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
 
 ## Taco Class Pricing Coding Plan
