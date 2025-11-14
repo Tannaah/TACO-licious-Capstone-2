@@ -270,30 +270,31 @@ Each receipt contains:
 - Completion status
 
 -------------------------
+## ⭐️ Class Outlines/Frameworks
 
-# ⭐️ Taco Class Outline/Framework
+-------------------------
+### Taco Class Outline/Framework
 <img width="2194" height="1566" alt="Screen Shot 2025-11-11 at 17 54 05 PM" src="https://github.com/user-attachments/assets/6f248827-9d70-455f-88b8-d1e0c5b64e0e" />
 
-## Taco Class Pricing Coding Plan
+### Taco Class Pricing Coding Plan
 <img width="2210" height="998" alt="Screen Shot 2025-11-11 at 18 34 01 PM" src="https://github.com/user-attachments/assets/e7acd481-8d60-4f0f-bc38-95d36e4eba50" />
 
-## Order Class Outline/Framework
+### Order Class Outline/Framework
 <img width="2030" height="1490" alt="Screen Shot 2025-11-11 at 20 03 06 PM" src="https://github.com/user-attachments/assets/65d425f5-db97-49e6-b028-1909664a945c" />
 
-## ConsoleHelper Outline/Framework
+### ConsoleHelper Outline/Framework
 <img width="2202" height="1426" alt="Screen Shot 2025-11-12 at 09 39 46 AM" src="https://github.com/user-attachments/assets/5741fe67-ea43-4557-96d9-8773b67e4041" />
 
-## UserInterface Class Outline/Framework
+### UserInterface Class Outline/Framework
 <img width="2250" height="1206" alt="Screen Shot 2025-11-12 at 10 46 13 AM" src="https://github.com/user-attachments/assets/9dbd7457-66cc-4d80-aa19-f6068a45eb01" />
 
-## StreetTaco Class Outline/Framework
+### StreetTaco Class Outline/Framework
 <img width="1800" height="992" alt="Screen Shot 2025-11-13 at 15 20 32 PM" src="https://github.com/user-attachments/assets/9b721a9b-932b-4949-92a4-36b1549784ff" />
 
-## SuperBurrito Class Outline/Framework
+### SuperBurrito Class Outline/Framework
 <img width="1894" height="1014" alt="Screen Shot 2025-11-13 at 15 21 52 PM" src="https://github.com/user-attachments/assets/bf60fb86-be2a-407c-85b5-9c61ea386636" />
 
 -------------------------
-
 ## ⭐️ How to Run
 This was made using Java Code and was made in IntelliJ.
 1. Clone the repository from GitHub.
@@ -301,3 +302,12 @@ This was made using Java Code and was made in IntelliJ.
 3. Run Main.java to start the application.
 
 -------------------------
+## ⭐️ Reflection and Closing
+Something this Capstone Project pushed me to learn on a deeper level was understaing Object-Oriented Programming. I also learned how large projects like this grow step by step and that forming a plan of the construction early makes working through it easier.
+
+Debugging the code flow in each class and preventing unwanted loops was chellenging for me. It made me slow down and think carefully about the program and how the code should work and talk to each other.
+
+I’m genuinely proud of how polished this capstone project turned out, and I'm glad I kept on improving it piece by piece and finishing with something that feels professional and thoughtful that I'm happy to present.
+
+-------------------------
+# ⭐️ Developed by Tanner Hodges.
